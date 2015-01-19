@@ -8,9 +8,9 @@
     <h2>Auth Request</h2>
 
     <form id="userData">
-        <input type="text" name="userName" placeholder="Name" />
-        <input type="password" name="password" placeholder="Password" />
-        <input type="password" name="confirmPassword" placeholder="Password" />
+        <input type="text" name="userName" value="asad" placeholder="Name" />
+        <input type="password" name="password" value="password123" placeholder="Password" />
+        <input type="password" name="confirmPassword" value="password123" placeholder="Password" />
         <input type="submit" id="register" value="Register" />
 
         <input type="submit" id="login" value="Login" />
@@ -18,7 +18,7 @@
 
     </form>
 
-    <h3> Cors Req</h3>
+    <h3>Cors Req</h3>
 
     <button id="getPatients">Get Patients</button>
 
@@ -27,40 +27,56 @@
     <script src="Scripts/jquery-1.10.2.js"></script>
 
     <script>
-        $(function ()
-        {
+        $(function () {
             var getPatients = function () {
 
-                $.get(url).always(showResponse);
+                //$.get(url).always(showResponse);
+
+                $.ajax(url, {
+                    type: "GET",
+                    headers: getHeaders()
+                }).always(showResponse);
+
 
                 return false;
             };
 
-            var showResponse = function (object)
-            {
+            var getHeaders = function() {
+                if (accessToken) {
+                    return { "Authorization": "Bearer " + accessToken };
+                }
+            };
+
+            var showResponse = function(object) {
                 $('#output').text(JSON.stringify(object, null, 4));
-            }
+            };
 
 
-            var register = function ()
-            {
-                var registerUrl = "/api/account/register";
+            var register = function() {
+                var registerUrl = "http://localhost:64237/api/account/register";
                 var data = $("#userData").serialize();
                 $.post(registerUrl, data).always(showResponse);
 
                 return false;
-            }
+            };
 
-            var login = function () {
-                var loginUrl = "/Token";
+            var saveAccessToken = function(data) {
+                accessToken = data.access_token;
+            };
+
+            var login = function() {
+                var loginUrl = "http://localhost:64237/Token";
                 var data = $("#userData").serialize();
                 data = data + "&grant_type=password";
-
-                $.post(loginUrl, data).always(showResponse);
+                console.log(data);
+                $.post(loginUrl, data)
+                    .success(saveAccessToken)
+                    .always(showResponse);
 
                 return false;
-            }
+            };
 
+            var accessToken = "";
             var url = "http://localhost:64237/api/patients/"
 
 

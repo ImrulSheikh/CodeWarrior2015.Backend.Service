@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using PatientData.Models;
 using PatientData.Providers;
 using PatientData.Results;
+using System.Web.Http.Cors;
 
 namespace PatientData.Controllers
 {
@@ -312,6 +313,7 @@ namespace PatientData.Controllers
         }
 
         // POST api/Account/Register
+        [EnableCors("*", "*", "GET")]
         [AllowAnonymous]
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)

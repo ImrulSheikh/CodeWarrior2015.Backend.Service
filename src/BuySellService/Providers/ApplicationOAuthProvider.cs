@@ -36,6 +36,8 @@ namespace PatientData.Providers
         {
             using (UserManager<IdentityUser> userManager = _userManagerFactory())
             {
+                context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+
                 IdentityUser user = await userManager.FindAsync(context.UserName, context.Password);
 
                 if (user == null)
