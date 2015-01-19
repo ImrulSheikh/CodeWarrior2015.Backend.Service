@@ -21,6 +21,8 @@
     <h3>Cors Req</h3>
 
     <button id="getPatients">Get Patients</button>
+    
+    <button id="getCustomers">Get Customers</button>
 
     <pre id="output"></pre>
 
@@ -28,9 +30,21 @@
 
     <script>
         $(function () {
+            
+            var getCustomers = function () {
+                var url = "http://localhost:64237/api/customers/";
+                $.ajax(url, {
+                    type: "GET",
+                    headers: getHeaders()
+                }).always(showResponse);
+
+
+                return false;
+            };
+            
             var getPatients = function () {
 
-                //$.get(url).always(showResponse);
+                var url = "http://localhost:64237/api/patients/";
 
                 $.ajax(url, {
                     type: "GET",
@@ -77,7 +91,7 @@
             };
 
             var accessToken = "";
-            var url = "http://localhost:64237/api/patients/"
+            
 
 
             $("#login").click(login);
@@ -85,6 +99,8 @@
             $("#register").click(register);
 
             $('#getPatients').click(getPatients);
+            
+            $('#getCustomers').click(getCustomers);
         })
     </script>
 </body>
