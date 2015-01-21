@@ -19,9 +19,22 @@ namespace PatientData.Controllers
         {
 
         }
-        public DbSet<Customer> Get()
+        //[AllowAnonymous]
+        public List<Customer> Get()
         {
-            return new CustomerDb().GetGata();
+            return new MockCustomerDb().Customers;
+        }
+
+
+        //[AllowAnonymous]
+        public HttpResponseMessage Get(string id)
+        {
+            var customers = new MockCustomerDb().Customers.Where(x => x.Id == id);
+            if (customers == null || customers.Count() == 0)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Customer not found");
+            }
+            return Request.CreateResponse(customers.First());
         }
     }
 }
