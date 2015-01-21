@@ -48,6 +48,31 @@ namespace PatientData.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Full Name")]
+        [StringLength(100, ErrorMessage = "The {0} must be at best {2} characters long.", MinimumLength = 6)]
+        public string FullName { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Sex")]
+        [StringLength(4)]
+        public string Sex { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Address")]
+        [StringLength(100, ErrorMessage = "The {0} must be at best {2} characters long.", MinimumLength = 6)]
+        public string Address { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "PhoneNumber")]
+        [StringLength(30, ErrorMessage = "The {0} must be at best {2} characters long.", MinimumLength = 6)]
+        public string PhoneNumber { get; set; }
+
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "EmailAddress")]
+        [StringLength(100, ErrorMessage = "The {0} must be at best {2} characters long.", MinimumLength = 6)]
+        public string EmailAddress { get; set; }
     }
 
     public class RegisterExternalBindingModel

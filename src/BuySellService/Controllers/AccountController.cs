@@ -331,9 +331,17 @@ namespace PatientData.Controllers
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
             IHttpActionResult errorResult = GetErrorResult(result);
 
+
+            
             if (errorResult != null)
             {
                 return errorResult;
+            }
+
+            var saveResult = ProfileDb.SaveProfile(model);
+            if (!saveResult)
+            {
+                throw new Exception("Unable to save profile");
             }
 
             return Ok();

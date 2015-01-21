@@ -13,11 +13,4 @@ namespace PatientData.Models
         public Profile BuyerProfile { get; set; }
         public Profile SellerProfile { get; set; }
     }
-
-    public class Profile
-    {
-        public int ItemSoldPurchased { get; set; }
-        public string Address { get; set; }
-
-    }
 }
