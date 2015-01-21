@@ -1,0 +1,3 @@
+The Buy and Sell Service is the mail Api project.
+
+The Cors Client is the html page to test the api
