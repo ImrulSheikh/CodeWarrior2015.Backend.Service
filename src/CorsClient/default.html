@@ -14,6 +14,8 @@
         <input type="submit" id="register" value="Register" />
 
         <input type="submit" id="login" value="Login" />
+        
+        <input type="submit" id="logout" value="Logout" />
 
 
     </form>
@@ -90,11 +92,23 @@
                 return false;
             };
 
+            var logout = function () {
+                var logoutUrl = "http://localhost:64237api/Account/Logout";
+                
+                $.post(logoutUrl, data)
+                    .always(showResponse);
+
+                return false;
+            };
+            
+
             var accessToken = "";
             
 
 
             $("#login").click(login);
+            
+            $("#logout").click(logout);
 
             $("#register").click(register);
 
