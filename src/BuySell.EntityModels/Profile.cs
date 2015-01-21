@@ -1,4 +1,4 @@
-﻿namespace PatientData.Models
+﻿namespace BuySell.EntityModels
 {
     public class Profile
     {

@@ -1,4 +1,5 @@
-﻿using PatientData.Models;
+﻿using BuySell.EntityModels;
+using PatientData.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace PatientData.Models
+﻿namespace BuySell.EntityModels
 {
     public class Patient
     {

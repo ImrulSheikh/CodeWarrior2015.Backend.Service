@@ -199,14 +199,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountBindingModels.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ProfileDb.cs" />
     <Compile Include="Models\CustomerDb.cs" />
-    <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\PatientData.cs" />
     <Compile Include="Models\PatientDb.cs" />
-    <Compile Include="Models\Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -270,6 +265,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BuySell.EntityModels\BuySell.EntityModels.csproj">
+      <Project>{8d6b1bab-a74f-4fec-8c77-515baf62ad59}</Project>
+      <Name>BuySell.EntityModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

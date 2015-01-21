@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Linq;
+using BuySell.EntityModels;
 
 namespace PatientData.Models
 {
