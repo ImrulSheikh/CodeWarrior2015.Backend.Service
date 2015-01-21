@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorsClient", "CorsClient\CorsClient.csproj", "{2541D7AA-900F-4A84-B8C1-ADDF75348BE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuySellService", "src\BuySellService\BuySellService.csproj", "{883117F4-3139-4E9B-BC00-47300CA08DC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuySellService", "BuySellService\BuySellService.csproj", "{883117F4-3139-4E9B-BC00-47300CA08DC8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuySell.EntityModels", "BuySell.EntityModels\BuySell.EntityModels.csproj", "{8D6B1BAB-A74F-4FEC-8C77-515BAF62AD59}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuySell.EntityModels", "src\BuySell.EntityModels\BuySell.EntityModels.csproj", "{8D6B1BAB-A74F-4FEC-8C77-515BAF62AD59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2541D7AA-900F-4A84-B8C1-ADDF75348BE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2541D7AA-900F-4A84-B8C1-ADDF75348BE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2541D7AA-900F-4A84-B8C1-ADDF75348BE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2541D7AA-900F-4A84-B8C1-ADDF75348BE1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{883117F4-3139-4E9B-BC00-47300CA08DC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{883117F4-3139-4E9B-BC00-47300CA08DC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{883117F4-3139-4E9B-BC00-47300CA08DC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
