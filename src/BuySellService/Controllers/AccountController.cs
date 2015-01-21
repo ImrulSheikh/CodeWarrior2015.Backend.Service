@@ -58,6 +58,7 @@ namespace PatientData.Controllers
         }
 
         // POST api/Account/Logout
+        [EnableCors("*", "*", "POST")]
         [Route("Logout")]
         public IHttpActionResult Logout()
         {

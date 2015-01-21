@@ -97,6 +97,10 @@
                 accessToken = data.access_token;
             };
 
+            var removeAccessToken = function (data) {
+                accessToken = "";
+            };
+
             var login = function() {
                 var loginUrl = "http://localhost:64237/Token";
                 var data = $("#userData").serialize();
@@ -110,9 +114,13 @@
             };
 
             var logout = function () {
-                var logoutUrl = "http://localhost:64237api/Account/Logout";
-                
-                $.post(logoutUrl, data)
+                var logoutUrl = "http://localhost:64237/api/Account/Logout";
+
+                $.ajax(logoutUrl, {
+                    type: "POST",
+                    headers: getHeaders()
+                })
+                    .success(removeAccessToken)
                     .always(showResponse);
 
                 return false;
