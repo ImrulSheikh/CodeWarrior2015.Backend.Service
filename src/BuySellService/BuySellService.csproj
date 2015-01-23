@@ -196,9 +196,19 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatientsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DataContexts\ProductCRUDContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501232001270_InitialCreate.cs" />
+    <Compile Include="Migrations\201501232001270_InitialCreate.Designer.cs">
+      <DependentUpon>201501232001270_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501232007574_DateTimeFixForOrder.cs" />
+    <Compile Include="Migrations\201501232007574_DateTimeFixForOrder.Designer.cs">
+      <DependentUpon>201501232007574_DateTimeFixForOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MockCustomerDb.cs" />
     <Compile Include="Models\ProfileDb.cs" />
     <Compile Include="Models\CustomerDb.cs" />
@@ -209,6 +219,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ProductCRUD.mdf" />
+    <Content Include="App_Data\ProductCRUD_log.ldf">
+      <DependentUpon>ProductCRUD.mdf</DependentUpon>
+    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -258,9 +272,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -272,6 +283,14 @@
       <Project>{8d6b1bab-a74f-4fec-8c77-515baf62ad59}</Project>
       <Name>BuySell.EntityModels</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201501232001270_InitialCreate.resx">
+      <DependentUpon>201501232001270_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501232007574_DateTimeFixForOrder.resx">
+      <DependentUpon>201501232007574_DateTimeFixForOrder.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
