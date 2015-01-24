@@ -42,8 +42,11 @@
   <ItemGroup>
     <Compile Include="AccountBindingModels.cs" />
     <Compile Include="AccountViewModels.cs" />
+    <Compile Include="BaseCoreEntity.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="Order.cs" />
     <Compile Include="Patient.cs" />
+    <Compile Include="Product.cs" />
     <Compile Include="Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
