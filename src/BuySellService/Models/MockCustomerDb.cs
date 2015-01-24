@@ -3,7 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using BuySell.EntityModels;
 
-namespace PatientData.Models
+namespace EShopper.Models
 {
     public class MockCustomerDb
     {

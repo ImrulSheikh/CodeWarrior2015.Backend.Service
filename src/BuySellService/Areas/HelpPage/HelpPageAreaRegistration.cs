@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace PatientData.Areas.HelpPage
+namespace EShopper.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

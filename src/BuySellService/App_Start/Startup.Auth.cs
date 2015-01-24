@@ -7,9 +7,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using PatientData.Providers;
+using EShopper.Providers;
 
-namespace PatientData
+namespace EShopper
 {
     public partial class Startup
     {

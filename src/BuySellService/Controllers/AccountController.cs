@@ -14,12 +14,12 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using PatientData.Models;
-using PatientData.Providers;
-using PatientData.Results;
+using EShopper.Models;
+using EShopper.Providers;
+using EShopper.Results;
 using System.Web.Http.Cors;
 
-namespace PatientData.Controllers
+namespace EShopper.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]

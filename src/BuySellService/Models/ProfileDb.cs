@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using BuySell.EntityModels;
 
-namespace PatientData.Models
+namespace EShopper.Models
 {
     public class ProfileDb
     {

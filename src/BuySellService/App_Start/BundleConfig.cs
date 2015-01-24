@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace PatientData
+namespace EShopper
 {
     public class BundleConfig
     {

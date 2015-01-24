@@ -1,6 +1,6 @@
 using System;
 
-namespace PatientData.Areas.HelpPage
+namespace EShopper.Areas.HelpPage
 {
     /// <summary>
     /// This represents an image sample on the help page. There's a display template named ImageSample associated with this class.

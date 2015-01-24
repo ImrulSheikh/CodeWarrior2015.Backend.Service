@@ -4,9 +4,9 @@ using System.Linq;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(PatientData.Startup))]
+[assembly: OwinStartup(typeof(EShopper.Startup))]
 
-namespace PatientData
+namespace EShopper
 {
     public partial class Startup
     {

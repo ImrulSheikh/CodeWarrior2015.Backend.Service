@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace PatientData.Areas.HelpPage
+namespace EShopper.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {

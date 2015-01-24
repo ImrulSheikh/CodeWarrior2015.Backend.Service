@@ -1,5 +1,5 @@
 ﻿using BuySell.EntityModels;
-using PatientData.Models;
+using EShopper.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-namespace PatientData.Controllers
+namespace EShopper.Controllers
 {
     [EnableCors("*","*","GET")]
     [Authorize]

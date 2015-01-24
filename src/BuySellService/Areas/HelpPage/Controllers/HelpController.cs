@@ -1,9 +1,9 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using PatientData.Areas.HelpPage.Models;
+using EShopper.Areas.HelpPage.Models;
 
-namespace PatientData.Areas.HelpPage.Controllers
+namespace EShopper.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

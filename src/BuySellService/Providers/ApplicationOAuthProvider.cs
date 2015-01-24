@@ -9,7 +9,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 
-namespace PatientData.Providers
+namespace EShopper.Providers
 {
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
