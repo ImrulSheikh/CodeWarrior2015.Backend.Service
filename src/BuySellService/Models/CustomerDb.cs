@@ -4,28 +4,23 @@ using BuySell.EntityModels;
 
 namespace PatientData.Models
 {
-    public class CustomerDb : DbContext
+    public class CustomerDbContext : DbContext
     {
-        public CustomerDb()
+        public CustomerDbContext()
+            : base("DefaultConnection")
         {
 
         }
         public DbSet<Customer> Customers { get; set; }
 
-        public DbSet<Customer> GetGata()
+
+        public void Add(Customer customer)
         {
-            if (Customers == null || Customers.Count() == 0)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    var customer = new Customer() { Id = "id" + i, Name = "Name_" + i };
-                    customer.BuyerProfile = new Profile() { Address = "Address_" + i, ItemSoldPurchased = i * 10 };
-                    Customers.Add(customer);
-                }
-            }
+            customer.Id = Customers.Max(x => x.Id)+1;
 
-            return Customers;
-
+            Customers.Add(customer);
+            SaveChanges();
         }
+        
     }
 }

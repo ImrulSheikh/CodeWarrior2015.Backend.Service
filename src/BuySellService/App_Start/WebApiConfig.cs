@@ -21,8 +21,8 @@ namespace PatientData
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            var cors = new EnableCorsAttribute("*", "*", "GET");
-            config.EnableCors();
+            var cors = new EnableCorsAttribute("*", "*", "GET,POST");
+            config.EnableCors(cors);
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

@@ -43,6 +43,8 @@
     
     <button id="getCustomers">Get Customers</button>
 
+    <button id="addCustomer">Add Customer</button>
+
     <pre id="output"></pre>
 
     <script src="Scripts/jquery-1.10.2.js"></script>
@@ -50,6 +52,24 @@
     <script>
         $(function () {
             
+
+            var addCustomer = function ()
+            {
+
+                var customer = {
+                    Id: "A123",
+                    Name: "PHVIS"
+                };
+
+                var addurl = "http://localhost:64237/api/customers/Add";
+                $.ajax({
+                    url: addurl,
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    headers: getHeaders(),
+                    data: JSON.stringify(customer)
+                });
+            }
             var getCustomers = function () {
                 var url = "http://localhost:64237/api/customers/";
                 $.ajax(url, {
@@ -140,6 +160,8 @@
             $('#getPatients').click(getPatients);
             
             $('#getCustomers').click(getCustomers);
+
+            $('#addCustomer').click(addCustomer);
         })
     </script>
 </body>

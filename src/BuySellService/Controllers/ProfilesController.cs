@@ -11,7 +11,7 @@ using System.Web.Http.Cors;
 
 namespace PatientData.Controllers
 {
-    [EnableCors("*","*","GET")]
+    //[EnableCors("*","*","GET")]
     [Authorize]
     public class ProfilesController : ApiController
     {
