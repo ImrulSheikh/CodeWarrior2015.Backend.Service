@@ -12,5 +12,12 @@ namespace BuySell.EntityModels
         public string CreatedBy { get; set; }
         public DateTime UpdatedOn { get; set; }
         public string UpdatedBy { get; set; }
+        public EntityStatus Status { get; set; }
+    }
+
+    public enum EntityStatus
+    {
+        InActive = 0,
+        Active = 1
     }
 }

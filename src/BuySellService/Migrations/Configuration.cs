@@ -19,8 +19,8 @@ namespace PatientData.Migrations
             context.Products.AddOrUpdate(p=>p.Id,new Product
                 {
                     Name = "Walton Fridge",
-                    Category = "Fridge",
-                    Price = 200000,
+                    //Category = "Fridge",
+                    //Price = 200000,
                     CreatedBy = "Ibnoon",
                     CreatedOn = DateTime.Now
                 });
