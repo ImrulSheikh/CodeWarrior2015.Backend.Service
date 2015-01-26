@@ -11,7 +11,7 @@ using System.Web.Http.Cors;
 
 namespace EShopper.Controllers
 {
-    //[EnableCors("*","*","GET")]
+     [EnableCors("*", "*", "GET")]
     [Authorize]
     public class ProfilesController : ApiController
     {
@@ -19,15 +19,14 @@ namespace EShopper.Controllers
         {
 
         }
-        public List<Profile> Get()
+        public HttpResponseMessage Get()
         {
-            return ProfileDb.GetGata();
-        }
+            var data = new ProfileDbContext().Profiles;
+            var response = Request.CreateResponse(data);
 
-        public bool AddorUpdate(Profile profile)
-        {
-            var aProfile = profile;
-            return false;
+            return response;
+
         }
+       
     }
 }

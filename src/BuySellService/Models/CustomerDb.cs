@@ -11,10 +11,10 @@ namespace EShopper.Models
         {
 
         }
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Profile> Customers { get; set; }
 
 
-        public void Add(Customer customer)
+        public void Add(Profile customer)
         {
             customer.Id = Customers.Max(x => x.Id)+1;
 

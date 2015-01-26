@@ -341,11 +341,11 @@ namespace EShopper.Controllers
                 return errorResult;
             }
 
-            var saveResult = ProfileDb.SaveProfile(model);
-            if (!saveResult)
-            {
-                throw new Exception("Unable to save profile");
-            }
+            //var saveResult = ProfileDbContext.SaveProfile(model);
+            //if (!saveResult)
+            //{
+            //    throw new Exception("Unable to save profile");
+            //}
 
             return Ok();
         }

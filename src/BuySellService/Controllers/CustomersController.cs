@@ -28,7 +28,7 @@ namespace EShopper.Controllers
            
         }
 
-        public void Add(Customer customer)
+        public void Add(Profile customer)
         {
             var context = new CustomerDbContext();
             context.Add(customer);
