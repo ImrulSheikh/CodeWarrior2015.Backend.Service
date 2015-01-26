@@ -11,13 +11,13 @@
         <input type="text" name="userName" value="asad" placeholder="Name" />
         <input type="password" name="password" value="password123" placeholder="Password" />
         <input type="submit" id="login" value="Login" />
-        
-        <br/>
+
+        <br />
 
         <input type="password" name="confirmPassword" value="password123" placeholder="Password" />
-        
 
-        <br/>
+
+        <br />
         <input type="text" name="fullName" value="The FullName" placeholder="Full Name" />
         <input type="text" name="sex" value="asad" placeholder="Sex" />
         <input type="text" name="Address" value="Address 123 456" placeholder="Address" />
@@ -26,21 +26,33 @@
 
         <input type="submit" id="register" value="Register" />
 
-        <br/>
-        <br/>
-        
+        <br />
+        <br />
+
         <input type="submit" id="logout" value="Logout" />
 
 
     </form>
-    
-    
-    
+    <br />
+    <form id="changePasswordData">
+        <input type="text" name="OldPassword" value="Password123" placeholder="Old Password" />
+        <input type="text" name="NewPassword" value="password121" placeholder="New Password" />
+        <input type="text" name="ConfirmPassword" value="password121" placeholder="Confirm Password" />
+
+
+
+        <input type="submit" id="changePassword" value="Change Password" />
+
+
+    </form>
+
+
+
 
     <h3>Cors Req</h3>
 
     <button id="getPatients">Get Patients</button>
-    
+
     <button id="getCustomers">Get Customers</button>
 
     <button id="addCustomer">Add Customer</button>
@@ -51,10 +63,9 @@
 
     <script>
         $(function () {
-            
 
-            var addCustomer = function ()
-            {
+
+            var addCustomer = function () {
 
                 var customer = {
                     Id: "A123",
@@ -80,7 +91,7 @@
 
                 return false;
             };
-            
+
             var getPatients = function () {
 
                 var url = "http://localhost:64237/api/patients/";
@@ -94,18 +105,18 @@
                 return false;
             };
 
-            var getHeaders = function() {
+            var getHeaders = function () {
                 if (accessToken) {
                     return { "Authorization": "Bearer " + accessToken };
                 }
             };
 
-            var showResponse = function(object) {
+            var showResponse = function (object) {
                 $('#output').text(JSON.stringify(object, null, 4));
             };
 
 
-            var register = function() {
+            var register = function () {
                 var registerUrl = "http://localhost:64237/api/account/register";
                 var data = $("#userData").serialize();
                 $.post(registerUrl, data).always(showResponse);
@@ -113,7 +124,7 @@
                 return false;
             };
 
-            var saveAccessToken = function(data) {
+            var saveAccessToken = function (data) {
                 accessToken = data.access_token;
             };
 
@@ -121,7 +132,7 @@
                 accessToken = "";
             };
 
-            var login = function() {
+            var login = function () {
                 var loginUrl = "http://localhost:64237/Token";
                 var data = $("#userData").serialize();
                 data = data + "&grant_type=password";
@@ -145,23 +156,61 @@
 
                 return false;
             };
-            
+
+            var changePassword = function () {
+                var url = "http://localhost:64237/api/Account/ChangePassword";
+                var changePasswordData = $("#changePasswordData").serialize();
+                changePasswordData = changePasswordData + "&grant_type=password";
+
+                console.log(url);
+                $.ajax(url, {
+                    type: "POST",
+                    headers: getHeaders(),
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify($("#changePasswordData").serializeObject())
+
+                })
+                 .always(showResponse);
+
+                return false;
+            };
+
+
+            $.fn.serializeObject = function () {
+                var o = {};
+                var a = this.serializeArray();
+                $.each(a, function () {
+                    if (o[this.name] !== undefined) {
+                        if (!o[this.name].push) {
+                            o[this.name] = [o[this.name]];
+                        }
+                        o[this.name].push(this.value || '');
+                    } else {
+                        o[this.name] = this.value || '';
+                    }
+                });
+
+                console.log(o);
+                return o;
+            };
 
             var accessToken = "";
-            
+
 
 
             $("#login").click(login);
-            
+
             $("#logout").click(logout);
 
             $("#register").click(register);
 
             $('#getPatients').click(getPatients);
-            
+
             $('#getCustomers').click(getCustomers);
 
             $('#addCustomer').click(addCustomer);
+
+            $('#changePassword').click(changePassword);
         })
     </script>
 </body>

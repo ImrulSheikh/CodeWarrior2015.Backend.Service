@@ -107,6 +107,7 @@ namespace EShopper.Controllers
         }
 
         // POST api/Account/ChangePassword
+         [EnableCors("*", "*", "POST")]
         [Route("ChangePassword")]
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
         {
