@@ -46,6 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201501261525416_ProductUserCategoryInitial.cs" />
+    <Compile Include="Migrations\201501261525416_ProductUserCategoryInitial.Designer.cs">
+      <DependentUpon>201501261525416_ProductUserCategoryInitial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501261532009_ProductUser.cs" />
+    <Compile Include="Migrations\201501261532009_ProductUser.Designer.cs">
+      <DependentUpon>201501261532009_ProductUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductCRUDContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,6 +67,14 @@
       <Project>{8D6B1BAB-A74F-4FEC-8C77-515BAF62AD59}</Project>
       <Name>BuySell.EntityModels</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201501261525416_ProductUserCategoryInitial.resx">
+      <DependentUpon>201501261525416_ProductUserCategoryInitial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501261532009_ProductUser.resx">
+      <DependentUpon>201501261532009_ProductUser.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

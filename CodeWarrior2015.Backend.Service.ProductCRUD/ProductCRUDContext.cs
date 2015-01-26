@@ -15,5 +15,10 @@ namespace CodeWarrior2015.Backend.Service.ProductCRUD
         public DbSet<User> Users { get; set; }
 
         public ProductCRUDContext() : base("ProductCRUD") { }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>();
+        }
     }
 }
