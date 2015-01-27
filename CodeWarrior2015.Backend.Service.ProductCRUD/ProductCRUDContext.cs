@@ -13,6 +13,7 @@ namespace CodeWarrior2015.Backend.Service.ProductCRUD
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductProperty> ProductProperties { get; set; }
         public DbSet<ProductPrice> ProductPrices { get; set; }
+        public DbSet<ProductGroup> ProductGroups { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<CategoryProperty> CategoryProperties { get; set; }
         public DbSet<User> Users { get; set; }
@@ -25,6 +26,8 @@ namespace CodeWarrior2015.Backend.Service.ProductCRUD
                 .HasRequired(p => p.Category)
                 .WithMany(c => c.Products)
                 .HasForeignKey(p => p.PostedBy);
+
+            modelBuilder.Entity<Product>().HasMany(p => p.Groups).WithMany(g => g.Products);
         }
     }
 }
