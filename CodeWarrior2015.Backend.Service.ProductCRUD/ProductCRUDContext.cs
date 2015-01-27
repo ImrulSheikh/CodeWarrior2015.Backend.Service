@@ -12,6 +12,7 @@ namespace CodeWarrior2015.Backend.Service.ProductCRUD
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductProperty> ProductProperties { get; set; }
+        public DbSet<ProductPrice> ProductPrices { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<CategoryProperty> CategoryProperties { get; set; }
         public DbSet<User> Users { get; set; }

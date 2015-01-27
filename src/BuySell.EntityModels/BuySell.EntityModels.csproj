@@ -49,6 +49,7 @@
     <Compile Include="Order.cs" />
     <Compile Include="Patient.cs" />
     <Compile Include="Product.cs" />
+    <Compile Include="ProductPrice.cs" />
     <Compile Include="ProductProperty.cs" />
     <Compile Include="Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
