@@ -54,6 +54,22 @@
     <Compile Include="Migrations\201501261532009_ProductUser.Designer.cs">
       <DependentUpon>201501261532009_ProductUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501270515431_FixPostedByToUserId.cs" />
+    <Compile Include="Migrations\201501270515431_FixPostedByToUserId.Designer.cs">
+      <DependentUpon>201501270515431_FixPostedByToUserId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501270541409_ProductPropertiesAdded.cs" />
+    <Compile Include="Migrations\201501270541409_ProductPropertiesAdded.Designer.cs">
+      <DependentUpon>201501270541409_ProductPropertiesAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501270545100_CategoryPropertiesAdded.cs" />
+    <Compile Include="Migrations\201501270545100_CategoryPropertiesAdded.Designer.cs">
+      <DependentUpon>201501270545100_CategoryPropertiesAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501270547001_CategoryPropertiesAddedFix.cs" />
+    <Compile Include="Migrations\201501270547001_CategoryPropertiesAddedFix.Designer.cs">
+      <DependentUpon>201501270547001_CategoryPropertiesAddedFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductCRUDContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,6 +90,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501261532009_ProductUser.resx">
       <DependentUpon>201501261532009_ProductUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501270515431_FixPostedByToUserId.resx">
+      <DependentUpon>201501270515431_FixPostedByToUserId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501270541409_ProductPropertiesAdded.resx">
+      <DependentUpon>201501270541409_ProductPropertiesAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501270545100_CategoryPropertiesAdded.resx">
+      <DependentUpon>201501270545100_CategoryPropertiesAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501270547001_CategoryPropertiesAddedFix.resx">
+      <DependentUpon>201501270547001_CategoryPropertiesAddedFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
