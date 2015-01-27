@@ -4,7 +4,7 @@ namespace BuySell.EntityModels
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public bool IsRequired { get; set; }
+        public bool IsMandatory { get; set; }
 
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
