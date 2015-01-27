@@ -11,6 +11,7 @@ namespace BuySell.EntityModels
         public int NumberOfUnits { get; set; }
         public string ImagePath { get; set; }
         public ICollection<ProductTag> Tags { get; set; }
+        public ICollection<ProductComment> Comments { get; set; }
         public ICollection<ProductProperty> Properties { get; set; }
         public ICollection<ProductPrice> Prices { get; set; }
         public ICollection<ProductGroup> Groups { get; set; }
