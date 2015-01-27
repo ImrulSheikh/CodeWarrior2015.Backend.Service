@@ -15,6 +15,7 @@ namespace BuySell.EntityModels
         public ICollection<ProductProperty> Properties { get; set; }
         public ICollection<ProductPrice> Prices { get; set; }
         public ICollection<ProductGroup> Groups { get; set; }
+        public ICollection<Order> Orders { get; set; }
 
         public int PostedBy { get; set; }
         public virtual Category Category { get; set; }
