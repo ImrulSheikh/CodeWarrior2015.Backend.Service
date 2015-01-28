@@ -1,0 +1,6 @@
+Enable-Migrations -ContextTypeName EShopper.Models.ProfileDbContext
+
+
+add-migration -Name DataTypeMatch -ConfigurationTypeName ConfigurationProfile -ConnectionStringName DefaultConnection 
+
+Update-Database -ConfigurationTypeName ConfigurationProfile -ConnectionStringName DefaultConnection -Verbose

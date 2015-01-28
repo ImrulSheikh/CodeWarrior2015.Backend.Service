@@ -36,13 +36,16 @@ namespace EShopper.Controllers
 
         [HttpPost]
        [Route("AddData")]
-        public HttpResponseMessage Add(Profile customer)
+        public HttpResponseMessage Add(Profile profile)
         {
+            profile.UserName = HttpContext.Current.User.Identity.Name;
+            profile.ProfileType = ProfileType.Seller.ToString();
+
             var context = new ProfileDbContext();
-            context.Add(customer);
+            context.Add(profile);
 
             var messages = new List<string>();
-            messages.Add("item added");
+            messages.Add("profile added");
            
             return Request.CreateResponse(HttpStatusCode.OK, messages);
         }
@@ -51,7 +54,14 @@ namespace EShopper.Controllers
         [Route("AddImage")]
         public async Task<HttpResponseMessage> UploadImageAsync()
         {
+
+            var userId = HttpContext.Current.User.Identity.Name;
+            var context = new ProfileDbContext();
+            var profile = context.Profiles.Where(x => x.UserName == userId && x.ProfileType == "Seller").First();
+
             
+
+
 
             var messages = new List<string>();
             if (Request.Content.IsMimeMultipartContent())
@@ -68,6 +78,10 @@ namespace EShopper.Controllers
                     var fi = new FileInfo(file.LocalFileName);
                     messages.Add("File uploaded as " + fi.FullName + " (" + fi.Length + " bytes)");
                 }
+
+                profile.ImagePath = uploadPath;
+                context.SaveChanges();
+
 
                 return Request.CreateResponse(HttpStatusCode.OK, messages);
             }

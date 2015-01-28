@@ -51,7 +51,7 @@
         
     </form>
 
-     <form id="imageData">
+    <form id="imageData">
         <span>Select file(s) to upload :</span>
         <input id="file1" name="file" type="file" multiple="multiple" />
         
@@ -62,7 +62,7 @@
 
     <h3>Cors Req</h3>
 
-    
+
     <button id="getProfiles">Get Profiles</button>
     <button id="addProfile">Update Profile</button>
 
@@ -83,6 +83,16 @@
                 if (accessToken) {
                     return { "Authorization": "Bearer " + accessToken };
                 }
+            };
+            var getHeaders2 = function () {
+                var s = {};
+                if (accessToken) {
+                    s["Authorization"] = "Bearer " + accessToken;
+
+                }
+                s["Content-Type"] = "multipart/form-data";
+                s["content-disposition"] = "form-data";
+                return s;
             };
 
             var showResponse = function (object) {
@@ -188,35 +198,29 @@
 
             var uploadImage = function () {
 
-               
+
                 var url = baseUrl + "/api/Profiles/AddImage";
-
-                //$.ajax({
-                //    url: url,
-                //    type: "POST",
-                //    contentType: "application/json;charset=utf-8",
-                //    headers: getHeaders(),
-                //    data: JSON.stringify(customer)
-                //})
-                // .always(showResponse);
-
-
 
 
                 var files = $("#file1").get(0).files;
                 if (files.length > 0) {
-                    var data = new FormData();
+                    var fileData = new FormData();
                     for (i = 0; i < files.length; i++) {
-                        data.append("file" + i, files[i]);
+                        fileData.append(i, files[i]);
+                        fileData.append('action', 'upload');
+                        fileData.append('id', i);
                     }
+
+
+                    console.log(fileData);
                     $.ajax({
                         type: "POST",
                         url: url,
-                        //contentType: false,
-                        headers: getHeaders(),
-
+                        contentType: false,
                         processData: false,
-                        data: JSON.stringify({}),
+                        headers: getHeaders(),
+                        
+                        data: fileData,
                         success: function (messages) {
                             for (i = 0; i < messages.length; i++) {
                                 alert(messages[i]);

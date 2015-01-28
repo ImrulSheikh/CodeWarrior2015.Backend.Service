@@ -212,6 +212,10 @@
     <Compile Include="Migrations\201501280633405_InitialProfile.Designer.cs">
       <DependentUpon>201501280633405_InitialProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501280939345_ChangeProfileColumn.cs" />
+    <Compile Include="Migrations\201501280939345_ChangeProfileColumn.Designer.cs">
+      <DependentUpon>201501280939345_ChangeProfileColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ConfigurationProduct.cs" />
     <Compile Include="Migrations\ConfigurationProfile.cs" />
     <Compile Include="Models\CustomerDb.cs" />
@@ -297,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501280633405_InitialProfile.resx">
       <DependentUpon>201501280633405_InitialProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501280939345_ChangeProfileColumn.resx">
+      <DependentUpon>201501280939345_ChangeProfileColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
