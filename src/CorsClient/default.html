@@ -64,46 +64,7 @@
     <script>
         $(function () {
 
-
-            var addCustomer = function () {
-
-                var customer = {
-                    Id: "A123",
-                    Name: "PHVIS"
-                };
-
-                var addurl = "http://localhost:64237/api/customers/Add";
-                $.ajax({
-                    url: addurl,
-                    type: "POST",
-                    contentType: "application/json;charset=utf-8",
-                    headers: getHeaders(),
-                    data: JSON.stringify(customer)
-                });
-            }
-            var getCustomers = function () {
-                var url = "http://localhost:64237/api/customers/";
-                $.ajax(url, {
-                    type: "GET",
-                    headers: getHeaders()
-                }).always(showResponse);
-
-
-                return false;
-            };
-
-            var getPatients = function () {
-
-                var url = "http://localhost:64237/api/patients/";
-
-                $.ajax(url, {
-                    type: "GET",
-                    headers: getHeaders()
-                }).always(showResponse);
-
-
-                return false;
-            };
+            var baseUrl = "http://localhost:64237";
 
             var getHeaders = function () {
                 if (accessToken) {
@@ -115,15 +76,6 @@
                 $('#output').text(JSON.stringify(object, null, 4));
             };
 
-
-            var register = function () {
-                var registerUrl = "http://localhost:64237/api/account/register";
-                var data = $("#userData").serialize();
-                $.post(registerUrl, data).always(showResponse);
-
-                return false;
-            };
-
             var saveAccessToken = function (data) {
                 accessToken = data.access_token;
             };
@@ -132,12 +84,25 @@
                 accessToken = "";
             };
 
+
+            var register = function () {
+                var registerUrl = baseUrl + "/api/account/register";
+                var data = $("#userData").serialize();
+                $.post(registerUrl, data).always(showResponse);
+
+                return false;
+            };
+
+
+
             var login = function () {
-                var loginUrl = "http://localhost:64237/Token";
+
+                var url = baseUrl + "/Token";
+
                 var data = $("#userData").serialize();
                 data = data + "&grant_type=password";
-                console.log(data);
-                $.post(loginUrl, data)
+
+                $.post(url, data)
                     .success(saveAccessToken)
                     .always(showResponse);
 
@@ -145,9 +110,9 @@
             };
 
             var logout = function () {
-                var logoutUrl = "http://localhost:64237/api/Account/Logout";
+                var url = baseUrl + "/api/Account/Logout";
 
-                $.ajax(logoutUrl, {
+                $.ajax(url, {
                     type: "POST",
                     headers: getHeaders()
                 })
@@ -158,11 +123,10 @@
             };
 
             var changePassword = function () {
-                var url = "http://localhost:64237/api/Account/ChangePassword";
+                var url = baseUrl + "/api/Account/ChangePassword";
                 var changePasswordData = $("#changePasswordData").serialize();
                 changePasswordData = changePasswordData + "&grant_type=password";
 
-                console.log(url);
                 $.ajax(url, {
                     type: "POST",
                     headers: getHeaders(),
@@ -176,6 +140,50 @@
             };
 
 
+            var addCustomer = function () {
+
+                var customer = {
+                    Id: "A123",
+                    Name: "PHVIS"
+                };
+
+                var addurl = baseUrl + "/api/customers/Add";
+
+                $.ajax({
+                    url: addurl,
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    headers: getHeaders(),
+                    data: JSON.stringify(customer)
+                });
+
+            }
+            var getCustomers = function () {
+                var url = baseUrl + "/api/customers/";
+                $.ajax(url, {
+                    type: "GET",
+                    headers: getHeaders()
+                }).always(showResponse);
+
+
+                return false;
+            };
+
+
+            var getPatients = function () {
+
+                var url = baseUrl + "/api/patients/";
+
+                $.ajax(url, {
+                    type: "GET",
+                    headers: getHeaders()
+                }).always(showResponse);
+
+
+                return false;
+            };
+
+            
             $.fn.serializeObject = function () {
                 var o = {};
                 var a = this.serializeArray();
@@ -190,7 +198,6 @@
                     }
                 });
 
-                console.log(o);
                 return o;
             };
 
