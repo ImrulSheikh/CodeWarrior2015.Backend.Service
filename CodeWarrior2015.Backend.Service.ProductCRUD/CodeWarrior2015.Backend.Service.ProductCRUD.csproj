@@ -86,6 +86,22 @@
     <Compile Include="Migrations\201501280553220_TagCommentOrderIdentityAdded.Designer.cs">
       <DependentUpon>201501280553220_TagCommentOrderIdentityAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501281029450_ProductUserAndCategoryFix.cs" />
+    <Compile Include="Migrations\201501281029450_ProductUserAndCategoryFix.Designer.cs">
+      <DependentUpon>201501281029450_ProductUserAndCategoryFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501281037413_ProductAddRelationToUser.cs" />
+    <Compile Include="Migrations\201501281037413_ProductAddRelationToUser.Designer.cs">
+      <DependentUpon>201501281037413_ProductAddRelationToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501281039094_ProductAddRelationToCategory.cs" />
+    <Compile Include="Migrations\201501281039094_ProductAddRelationToCategory.Designer.cs">
+      <DependentUpon>201501281039094_ProductAddRelationToCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501281049257_ProductUserModification.cs" />
+    <Compile Include="Migrations\201501281049257_ProductUserModification.Designer.cs">
+      <DependentUpon>201501281049257_ProductUserModification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductCRUDContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -131,6 +147,21 @@
     <EmbeddedResource Include="Migrations\201501280553220_TagCommentOrderIdentityAdded.resx">
       <DependentUpon>201501280553220_TagCommentOrderIdentityAdded.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501281029450_ProductUserAndCategoryFix.resx">
+      <DependentUpon>201501281029450_ProductUserAndCategoryFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501281037413_ProductAddRelationToUser.resx">
+      <DependentUpon>201501281037413_ProductAddRelationToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501281039094_ProductAddRelationToCategory.resx">
+      <DependentUpon>201501281039094_ProductAddRelationToCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501281049257_ProductUserModification.resx">
+      <DependentUpon>201501281049257_ProductUserModification.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repositories\Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

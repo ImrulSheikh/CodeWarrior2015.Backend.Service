@@ -17,10 +17,10 @@ namespace BuySell.EntityModels
         public ICollection<ProductGroup> Groups { get; set; }
         public ICollection<Order> Orders { get; set; }
 
-        public int PostedBy { get; set; }
+        public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
 
-        public int UserId { get; set; }
-        public virtual User User { get; set; }
+        public int PostedUserId { get; set; }
+        public virtual User PostedBy { get; set; }
     }
 }

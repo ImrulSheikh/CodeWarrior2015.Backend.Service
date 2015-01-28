@@ -37,8 +37,18 @@ namespace CodeWarrior2015.Backend.Service.ProductCRUD
             modelBuilder.Entity<User>().Property(u => u.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             modelBuilder.Entity<Order>().Property(o => o.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
+            modelBuilder.Entity<Product>().Property(p => p.CreatedOn).HasColumnType("datetime2");
+            modelBuilder.Entity<Product>().Property(p => p.UpdatedOn).HasColumnType("datetime2");
+            modelBuilder.Entity<ProductPrice>().Property(p => p.DiscountValidity).HasColumnType("datetime2");
+            modelBuilder.Entity<User>().Property(p => p.CreatedOn).HasColumnType("datetime2");
+            modelBuilder.Entity<User>().Property(p => p.UpdatedOn).HasColumnType("datetime2");
+            modelBuilder.Entity<Category>().Property(p => p.CreatedOn).HasColumnType("datetime2");
+            modelBuilder.Entity<Category>().Property(p => p.UpdatedOn).HasColumnType("datetime2");
+            modelBuilder.Entity<Order>().Property(p => p.CreatedOn).HasColumnType("datetime2");
+            modelBuilder.Entity<Order>().Property(p => p.UpdatedOn).HasColumnType("datetime2");
 
-            modelBuilder.Entity<Product>().HasRequired(p => p.Category).WithMany(c => c.Products).HasForeignKey(p => p.PostedBy);
+            modelBuilder.Entity<Product>().HasRequired(p => p.PostedBy).WithMany(u => u.Products).HasForeignKey(p => p.PostedUserId);
+            //modelBuilder.Entity<Product>().HasRequired(p => p.Category).WithMany(c => c.Products).HasForeignKey(p => p.CategoryId);
             modelBuilder.Entity<Product>().HasMany(p => p.Groups).WithMany(g => g.Products);
 
             modelBuilder.Entity<Order>().HasRequired(o => o.User).WithMany(u => u.Orders).HasForeignKey(o => o.OrderedBy).WillCascadeOnDelete(false);

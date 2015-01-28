@@ -17,7 +17,8 @@ namespace BuySell.EntityModels
 
     public enum EntityStatus
     {
-        InActive = 0,
-        Active = 1
+        None = 0,
+        Active = 1,
+        Inactive = 2
     }
 }
