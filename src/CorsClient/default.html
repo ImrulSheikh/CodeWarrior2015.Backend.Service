@@ -46,15 +46,29 @@
 
     </form>
 
+    <form id="updateProfile">
+        
+        
+    </form>
+
+     <form id="imageData">
+        <span>Select file(s) to upload :</span>
+        <input id="file1" name="file" type="file" multiple="multiple" />
+        
+    </form>
+
 
 
 
     <h3>Cors Req</h3>
 
+    
+    <button id="getProfiles">Get Profiles</button>
+    <button id="addProfile">Update Profile</button>
 
-    <button id="getCustomers">Get Profiles</button>
+    <button id="uploadImage">Update Image</button>
 
-    <button id="addCustomer">Update Profile</button>
+    
 
     <pre id="output"></pre>
 
@@ -139,26 +153,29 @@
             };
 
 
-            var addCustomer = function () {
+            var addProfile = function () {
 
                 var customer = {
                     Id: "A123",
                     Name: "PHVIS"
                 };
 
-                var addurl = baseUrl + "/api/profiles/Add";
+                var url = baseUrl + "/api/Profiles/AddData";
 
                 $.ajax({
-                    url: addurl,
+                    url: url,
                     type: "POST",
                     contentType: "application/json;charset=utf-8",
                     headers: getHeaders(),
                     data: JSON.stringify(customer)
-                });
+                })
+                 .always(showResponse);
+
+                return false;
 
             }
-            var getCustomers = function () {
-                var url = baseUrl + "/api/profiles/";
+            var getProfiles = function () {
+                var url = baseUrl + "/api/Profiles/GetData";
                 $.ajax(url, {
                     type: "GET",
                     headers: getHeaders()
@@ -169,20 +186,54 @@
             };
 
 
-            //var getPatients = function () {
+            var uploadImage = function () {
 
-            //    var url = baseUrl + "/api/patients/";
+               
+                var url = baseUrl + "/api/Profiles/AddImage";
 
-            //    $.ajax(url, {
-            //        type: "GET",
-            //        headers: getHeaders()
-            //    }).always(showResponse);
+                //$.ajax({
+                //    url: url,
+                //    type: "POST",
+                //    contentType: "application/json;charset=utf-8",
+                //    headers: getHeaders(),
+                //    data: JSON.stringify(customer)
+                //})
+                // .always(showResponse);
 
 
-            //    return false;
-            //};
 
-            
+
+                var files = $("#file1").get(0).files;
+                if (files.length > 0) {
+                    var data = new FormData();
+                    for (i = 0; i < files.length; i++) {
+                        data.append("file" + i, files[i]);
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        //contentType: false,
+                        headers: getHeaders(),
+
+                        processData: false,
+                        data: JSON.stringify({}),
+                        success: function (messages) {
+                            for (i = 0; i < messages.length; i++) {
+                                alert(messages[i]);
+                            }
+                        },
+                        error: function () {
+                            alert("Error while invoking the Web API");
+                        }
+                    })
+                    .always(showResponse);
+                }
+
+                return false;
+
+            }
+
+
             $.fn.serializeObject = function () {
                 var o = {};
                 var a = this.serializeArray();
@@ -212,11 +263,13 @@
 
             //$('#getPatients').click(getPatients);
 
-            $('#getCustomers').click(getCustomers);
+            $('#getProfiles').click(getProfiles);
 
-            $('#addCustomer').click(addCustomer);
+            $('#addProfile').click(addProfile);
 
             $('#changePassword').click(changePassword);
+
+            $('#uploadImage').click(uploadImage);
         })
     </script>
 </body>
