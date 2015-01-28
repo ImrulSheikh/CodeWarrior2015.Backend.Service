@@ -54,10 +54,9 @@ namespace EShopper.Controllers
             
 
             var messages = new List<string>();
-            messages.Add("item added");
             if (Request.Content.IsMimeMultipartContent())
             {
-                string uploadPath = HttpContext.Current.Server.MapPath("~/uploads");
+                string uploadPath = HttpContext.Current.Server.MapPath("~/Content/uploads");
 
                 var streamProvider = new MyStreamProvider(uploadPath);
 
