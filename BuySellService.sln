@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeWarrior2015.Backend.Ser
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuySell.ViewModels", "BuySell.ViewModels\BuySell.ViewModels.csproj", "{DDCE6D78-452E-49BE-8B90-2E95DD25B46E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuySell.GenericRepository", "BuySell.GenericRepository\BuySell.GenericRepository.csproj", "{707CAB2B-1D78-42E2-83FA-56A8E861B651}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuySell.GenericRepository", "BuySell.GenericRepository\BuySell.GenericRepository.csproj", "{C97D5DF0-9A9E-4A19-8268-287ECFD4B528}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +47,10 @@ Global
 		{DDCE6D78-452E-49BE-8B90-2E95DD25B46E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDCE6D78-452E-49BE-8B90-2E95DD25B46E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDCE6D78-452E-49BE-8B90-2E95DD25B46E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{707CAB2B-1D78-42E2-83FA-56A8E861B651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{707CAB2B-1D78-42E2-83FA-56A8E861B651}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{707CAB2B-1D78-42E2-83FA-56A8E861B651}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{707CAB2B-1D78-42E2-83FA-56A8E861B651}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C97D5DF0-9A9E-4A19-8268-287ECFD4B528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C97D5DF0-9A9E-4A19-8268-287ECFD4B528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C97D5DF0-9A9E-4A19-8268-287ECFD4B528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C97D5DF0-9A9E-4A19-8268-287ECFD4B528}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

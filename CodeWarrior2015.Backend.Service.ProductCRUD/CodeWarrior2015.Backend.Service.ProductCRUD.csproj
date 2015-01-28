@@ -106,15 +106,17 @@
     <Compile Include="ProductCRUDContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Interfaces\IProductRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
-    <Compile Include="Repositories\RepositoryBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BuySell.GenericRepository\BuySell.GenericRepository.csproj">
+      <Project>{C97D5DF0-9A9E-4A19-8268-287ECFD4B528}</Project>
+      <Name>BuySell.GenericRepository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\src\BuySell.EntityModels\BuySell.EntityModels.csproj">
       <Project>{8D6B1BAB-A74F-4FEC-8C77-515BAF62AD59}</Project>
       <Name>BuySell.EntityModels</Name>
