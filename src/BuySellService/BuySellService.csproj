@@ -209,6 +209,10 @@
     <Compile Include="Migrations\201501232007574_DateTimeFixForOrder.Designer.cs">
       <DependentUpon>201501232007574_DateTimeFixForOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501280552065_TagCommentOrderIdentityAdded.cs" />
+    <Compile Include="Migrations\201501280552065_TagCommentOrderIdentityAdded.Designer.cs">
+      <DependentUpon>201501280552065_TagCommentOrderIdentityAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MockCustomerDb.cs" />
     <Compile Include="Models\ProfileDb.cs" />
@@ -293,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501232007574_DateTimeFixForOrder.resx">
       <DependentUpon>201501232007574_DateTimeFixForOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501280552065_TagCommentOrderIdentityAdded.resx">
+      <DependentUpon>201501280552065_TagCommentOrderIdentityAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

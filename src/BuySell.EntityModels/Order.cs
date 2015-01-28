@@ -12,7 +12,7 @@ namespace BuySell.EntityModels
         public DateTime OrderDate { get; set; }
         public DateTime DeliveryDate { get; set; }
 
-        public string OrderedBy { get; set; }
+        public int OrderedBy { get; set; }
         public virtual User User { get; set; }
 
         public int ProductId { get; set; }

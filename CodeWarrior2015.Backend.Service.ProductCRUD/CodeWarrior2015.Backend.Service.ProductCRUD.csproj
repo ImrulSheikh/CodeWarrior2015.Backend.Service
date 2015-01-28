@@ -82,6 +82,10 @@
     <Compile Include="Migrations\201501270820373_UserPropertyAddedSex.Designer.cs">
       <DependentUpon>201501270820373_UserPropertyAddedSex.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501280553220_TagCommentOrderIdentityAdded.cs" />
+    <Compile Include="Migrations\201501280553220_TagCommentOrderIdentityAdded.Designer.cs">
+      <DependentUpon>201501280553220_TagCommentOrderIdentityAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductCRUDContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -123,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501270820373_UserPropertyAddedSex.resx">
       <DependentUpon>201501270820373_UserPropertyAddedSex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501280553220_TagCommentOrderIdentityAdded.resx">
+      <DependentUpon>201501280553220_TagCommentOrderIdentityAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
