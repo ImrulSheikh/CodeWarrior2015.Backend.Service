@@ -63,6 +63,7 @@ namespace CodeWarrior2015.Backend.Service.ProductCRUD.Migrations
                     new ProductProperty {Name = "Weight", Type = "System.float", Value = "5.44"},
                     new ProductProperty {Name = "Talktime", Type = "System.int", Value = "21"},
                     new ProductProperty {Name = "StandByTime", Type = "System.int", Value = "672"},
+                    new ProductProperty {Name = "Processor Cores", Type = "System.int", Value = "4"},
                     new ProductProperty {Name = "Shipping Weight", Type = "System.float", Value = "14.4"},
                     new ProductProperty {Name = "ASIN", Type = "System.string", Value = "B00L9OVC94"},
                     new ProductProperty {Name = "Item model number", Type = "System.string", Value = "G3"},
