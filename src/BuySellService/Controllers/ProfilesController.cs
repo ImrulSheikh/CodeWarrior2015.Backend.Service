@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using BuySell.EntityModels;
+using EShopper.DataContexts;
 using EShopper.Models;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,6 @@ using System.Web.Http.Cors;
 
 namespace EShopper.Controllers
 {
-    //[EnableCors("*","*","GET")]
     [Authorize]
     public class ProfilesController : ApiController
     {
@@ -19,15 +19,22 @@ namespace EShopper.Controllers
         {
 
         }
-        public List<Profile> Get()
+        public HttpResponseMessage Get()
         {
-            return ProfileDb.GetGata();
+            var data = new ProfileDbContext().Profiles;
+            var response = Request.CreateResponse(data);
+
+            return response;
+
         }
 
-        public bool AddorUpdate(Profile profile)
+
+        public void Add(Profile customer)
         {
-            var aProfile = profile;
-            return false;
+            var context = new ProfileDbContext();
+            context.Add(customer);
+
         }
+       
     }
 }

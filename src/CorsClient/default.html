@@ -51,11 +51,10 @@
 
     <h3>Cors Req</h3>
 
-    <button id="getPatients">Get Patients</button>
 
-    <button id="getCustomers">Get Customers</button>
+    <button id="getCustomers">Get Profiles</button>
 
-    <button id="addCustomer">Add Customer</button>
+    <button id="addCustomer">Update Profile</button>
 
     <pre id="output"></pre>
 
@@ -147,7 +146,7 @@
                     Name: "PHVIS"
                 };
 
-                var addurl = baseUrl + "/api/customers/Add";
+                var addurl = baseUrl + "/api/profiles/Add";
 
                 $.ajax({
                     url: addurl,
@@ -159,7 +158,7 @@
 
             }
             var getCustomers = function () {
-                var url = baseUrl + "/api/customers/";
+                var url = baseUrl + "/api/profiles/";
                 $.ajax(url, {
                     type: "GET",
                     headers: getHeaders()
@@ -170,18 +169,18 @@
             };
 
 
-            var getPatients = function () {
+            //var getPatients = function () {
 
-                var url = baseUrl + "/api/patients/";
+            //    var url = baseUrl + "/api/patients/";
 
-                $.ajax(url, {
-                    type: "GET",
-                    headers: getHeaders()
-                }).always(showResponse);
+            //    $.ajax(url, {
+            //        type: "GET",
+            //        headers: getHeaders()
+            //    }).always(showResponse);
 
 
-                return false;
-            };
+            //    return false;
+            //};
 
             
             $.fn.serializeObject = function () {
@@ -211,7 +210,7 @@
 
             $("#register").click(register);
 
-            $('#getPatients').click(getPatients);
+            //$('#getPatients').click(getPatients);
 
             $('#getCustomers').click(getCustomers);
 

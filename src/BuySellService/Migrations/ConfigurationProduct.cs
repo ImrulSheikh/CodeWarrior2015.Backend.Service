@@ -1,20 +1,17 @@
 using BuySell.EntityModels;
+using System;
+using System.Data.Entity.Migrations;
 
-namespace PatientData.Migrations
+namespace EShopper.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<PatientData.DataContexts.ProductCRUDContext>
+    internal sealed class ConfigurationProduct : DbMigrationsConfiguration<EShopper.DataContexts.ProductCRUDContext>
     {
-        public Configuration()
+        public ConfigurationProduct()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(PatientData.DataContexts.ProductCRUDContext context)
+        protected override void Seed(EShopper.DataContexts.ProductCRUDContext context)
         {
             context.Products.AddOrUpdate(p=>p.Id,new Product
                 {

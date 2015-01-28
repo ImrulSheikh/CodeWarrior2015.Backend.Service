@@ -195,7 +195,6 @@
     <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PatientsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DataContexts\ProductCRUDContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -209,11 +208,14 @@
     <Compile Include="Migrations\201501232007574_DateTimeFixForOrder.Designer.cs">
       <DependentUpon>201501232007574_DateTimeFixForOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\MockCustomerDb.cs" />
-    <Compile Include="Models\ProfileDb.cs" />
+    <Compile Include="Migrations\201501280633405_InitialProfile.cs" />
+    <Compile Include="Migrations\201501280633405_InitialProfile.Designer.cs">
+      <DependentUpon>201501280633405_InitialProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ConfigurationProduct.cs" />
+    <Compile Include="Migrations\ConfigurationProfile.cs" />
     <Compile Include="Models\CustomerDb.cs" />
-    <Compile Include="Models\PatientDb.cs" />
+    <Compile Include="DataContexts\ProfileDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -293,6 +295,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501232007574_DateTimeFixForOrder.resx">
       <DependentUpon>201501232007574_DateTimeFixForOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501280633405_InitialProfile.resx">
+      <DependentUpon>201501280633405_InitialProfile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
