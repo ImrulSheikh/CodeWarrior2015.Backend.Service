@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BuySell.Repositories")]
+[assembly: AssemblyTitle("BuySell.ViewModels")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("BuySell.Repositories")]
+[assembly: AssemblyProduct("BuySell.ViewModels")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d857039d-d89e-411d-973a-9378ef164201")]
+[assembly: Guid("6338c467-b9b9-4bab-947a-74420b765c06")]
 
 // Version information for an assembly consists of the following four values:
 //
