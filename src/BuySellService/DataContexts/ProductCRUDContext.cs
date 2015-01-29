@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
 using BuySell.EntityModels;
 
-namespace PatientData.DataContexts
+namespace EShopper.DataContexts
 {
-    public class ProductCRUDContext: DbContext
+    public class ProductCRUDContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
 
-        public ProductCRUDContext():base("ProductCRUDConnection"){}
+        public ProductCRUDContext() : base("ProductCRUDConnection") { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

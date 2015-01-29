@@ -11,13 +11,13 @@
         <input type="text" name="userName" value="asad" placeholder="Name" />
         <input type="password" name="password" value="password123" placeholder="Password" />
         <input type="submit" id="login" value="Login" />
-        
-        <br/>
+
+        <br />
 
         <input type="password" name="confirmPassword" value="password123" placeholder="Password" />
-        
 
-        <br/>
+
+        <br />
         <input type="text" name="fullName" value="The FullName" placeholder="Full Name" />
         <input type="text" name="sex" value="asad" placeholder="Sex" />
         <input type="text" name="Address" value="Address 123 456" placeholder="Address" />
@@ -26,24 +26,49 @@
 
         <input type="submit" id="register" value="Register" />
 
-        <br/>
-        <br/>
-        
+        <br />
+        <br />
+
         <input type="submit" id="logout" value="Logout" />
 
 
     </form>
-    
-    
-    
+    <br />
+    <form id="changePasswordData">
+        <input type="text" name="OldPassword" value="Password123" placeholder="Old Password" />
+        <input type="text" name="NewPassword" value="password121" placeholder="New Password" />
+        <input type="text" name="ConfirmPassword" value="password121" placeholder="Confirm Password" />
+
+
+
+        <input type="submit" id="changePassword" value="Change Password" />
+
+
+    </form>
+
+    <form id="updateProfile">
+        
+        
+    </form>
+
+    <form id="imageData">
+        <span>Select file(s) to upload :</span>
+        <input id="file1" name="file" type="file" multiple="multiple" />
+        
+    </form>
+
+
+
 
     <h3>Cors Req</h3>
 
-    <button id="getPatients">Get Patients</button>
-    
-    <button id="getCustomers">Get Customers</button>
 
-    <button id="addCustomer">Add Customer</button>
+    <button id="getProfiles">Get Profiles</button>
+    <button id="addProfile">Update Profile</button>
+
+    <button id="uploadImage">Update Image</button>
+
+    
 
     <pre id="output"></pre>
 
@@ -51,69 +76,30 @@
 
     <script>
         $(function () {
-            
 
-            var addCustomer = function ()
-            {
+            var baseUrl = "http://localhost:64237";
 
-                var customer = {
-                    Id: "A123",
-                    Name: "PHVIS"
-                };
-
-                var addurl = "http://localhost:64237/api/customers/Add";
-                $.ajax({
-                    url: addurl,
-                    type: "POST",
-                    contentType: "application/json;charset=utf-8",
-                    headers: getHeaders(),
-                    data: JSON.stringify(customer)
-                });
-            }
-            var getCustomers = function () {
-                var url = "http://localhost:64237/api/customers/";
-                $.ajax(url, {
-                    type: "GET",
-                    headers: getHeaders()
-                }).always(showResponse);
-
-
-                return false;
-            };
-            
-            var getPatients = function () {
-
-                var url = "http://localhost:64237/api/patients/";
-
-                $.ajax(url, {
-                    type: "GET",
-                    headers: getHeaders()
-                }).always(showResponse);
-
-
-                return false;
-            };
-
-            var getHeaders = function() {
+            var getHeaders = function () {
                 if (accessToken) {
                     return { "Authorization": "Bearer " + accessToken };
                 }
             };
+            var getHeaders2 = function () {
+                var s = {};
+                if (accessToken) {
+                    s["Authorization"] = "Bearer " + accessToken;
 
-            var showResponse = function(object) {
+                }
+                s["Content-Type"] = "multipart/form-data";
+                s["content-disposition"] = "form-data";
+                return s;
+            };
+
+            var showResponse = function (object) {
                 $('#output').text(JSON.stringify(object, null, 4));
             };
 
-
-            var register = function() {
-                var registerUrl = "http://localhost:64237/api/account/register";
-                var data = $("#userData").serialize();
-                $.post(registerUrl, data).always(showResponse);
-
-                return false;
-            };
-
-            var saveAccessToken = function(data) {
+            var saveAccessToken = function (data) {
                 accessToken = data.access_token;
             };
 
@@ -121,12 +107,25 @@
                 accessToken = "";
             };
 
-            var login = function() {
-                var loginUrl = "http://localhost:64237/Token";
+
+            var register = function () {
+                var registerUrl = baseUrl + "/api/account/register";
+                var data = $("#userData").serialize();
+                $.post(registerUrl, data).always(showResponse);
+
+                return false;
+            };
+
+
+
+            var login = function () {
+
+                var url = baseUrl + "/Token";
+
                 var data = $("#userData").serialize();
                 data = data + "&grant_type=password";
-                console.log(data);
-                $.post(loginUrl, data)
+
+                $.post(url, data)
                     .success(saveAccessToken)
                     .always(showResponse);
 
@@ -134,9 +133,9 @@
             };
 
             var logout = function () {
-                var logoutUrl = "http://localhost:64237/api/Account/Logout";
+                var url = baseUrl + "/api/Account/Logout";
 
-                $.ajax(logoutUrl, {
+                $.ajax(url, {
                     type: "POST",
                     headers: getHeaders()
                 })
@@ -145,23 +144,136 @@
 
                 return false;
             };
-            
+
+            var changePassword = function () {
+                var url = baseUrl + "/api/Account/ChangePassword";
+                var changePasswordData = $("#changePasswordData").serialize();
+                changePasswordData = changePasswordData + "&grant_type=password";
+
+                $.ajax(url, {
+                    type: "POST",
+                    headers: getHeaders(),
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify($("#changePasswordData").serializeObject())
+
+                })
+                 .always(showResponse);
+
+                return false;
+            };
+
+
+            var addProfile = function () {
+
+                var customer = {
+                    Id: "A123",
+                    Name: "PHVIS"
+                };
+
+                var url = baseUrl + "/api/Profiles/AddData";
+
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    contentType: "application/json;charset=utf-8",
+                    headers: getHeaders(),
+                    data: JSON.stringify(customer)
+                })
+                 .always(showResponse);
+
+                return false;
+
+            }
+            var getProfiles = function () {
+                var url = baseUrl + "/api/Profiles/GetData";
+                $.ajax(url, {
+                    type: "GET",
+                    headers: getHeaders()
+                }).always(showResponse);
+
+
+                return false;
+            };
+
+
+            var uploadImage = function () {
+
+
+                var url = baseUrl + "/api/Profiles/AddImage";
+
+
+                var files = $("#file1").get(0).files;
+                if (files.length > 0) {
+                    var fileData = new FormData();
+                    for (i = 0; i < files.length; i++) {
+                        fileData.append(i, files[i]);
+                        fileData.append('action', 'upload');
+                        fileData.append('id', i);
+                    }
+
+
+                    console.log(fileData);
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        contentType: false,
+                        processData: false,
+                        headers: getHeaders(),
+                        
+                        data: fileData,
+                        success: function (messages) {
+                            for (i = 0; i < messages.length; i++) {
+                                alert(messages[i]);
+                            }
+                        },
+                        error: function () {
+                            alert("Error while invoking the Web API");
+                        }
+                    })
+                    .always(showResponse);
+                }
+
+                return false;
+
+            }
+
+
+            $.fn.serializeObject = function () {
+                var o = {};
+                var a = this.serializeArray();
+                $.each(a, function () {
+                    if (o[this.name] !== undefined) {
+                        if (!o[this.name].push) {
+                            o[this.name] = [o[this.name]];
+                        }
+                        o[this.name].push(this.value || '');
+                    } else {
+                        o[this.name] = this.value || '';
+                    }
+                });
+
+                return o;
+            };
 
             var accessToken = "";
-            
+
 
 
             $("#login").click(login);
-            
+
             $("#logout").click(logout);
 
             $("#register").click(register);
 
-            $('#getPatients').click(getPatients);
-            
-            $('#getCustomers').click(getCustomers);
+            //$('#getPatients').click(getPatients);
 
-            $('#addCustomer').click(addCustomer);
+            $('#getProfiles').click(getProfiles);
+
+            $('#addProfile').click(addProfile);
+
+            $('#changePassword').click(changePassword);
+
+            $('#uploadImage').click(uploadImage);
         })
     </script>
 </body>

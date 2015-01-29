@@ -107,6 +107,7 @@ namespace EShopper.Controllers
         }
 
         // POST api/Account/ChangePassword
+         [EnableCors("*", "*", "POST")]
         [Route("ChangePassword")]
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
         {
@@ -340,11 +341,11 @@ namespace EShopper.Controllers
                 return errorResult;
             }
 
-            var saveResult = ProfileDb.SaveProfile(model);
-            if (!saveResult)
-            {
-                throw new Exception("Unable to save profile");
-            }
+            //var saveResult = ProfileDb.SaveProfile(model);
+            //if (!saveResult)
+            //{
+            //    throw new Exception("Unable to save profile");
+            //}
 
             return Ok();
         }

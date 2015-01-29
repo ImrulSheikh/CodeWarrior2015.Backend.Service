@@ -6,7 +6,7 @@ using BuySell.EntityModels;
 
 namespace EShopper.Models
 {
-    public class ProfileDb
+    public class ProfileDb 
     {
         public static List<Profile> GetGata()
         {
