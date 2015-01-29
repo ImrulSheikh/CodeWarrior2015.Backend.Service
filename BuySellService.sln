@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuySellService", "src\BuySellService\BuySellService.csproj", "{883117F4-3139-4E9B-BC00-47300CA08DC8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuySell.EntityModels", "src\BuySell.EntityModels\BuySell.EntityModels.csproj", "{8D6B1BAB-A74F-4FEC-8C77-515BAF62AD59}"
@@ -16,6 +18,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeWarrior2015.Backend.Service.UserStats", "src\CodeWarrior2015.Backend.Service.UserStats\CodeWarrior2015.Backend.Service.UserStats.csproj", "{AAFAEC2D-28C9-4A12-B409-B97D894B242E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuySell.Repositories", "src\BuySell.Repositories\BuySell.Repositories.csproj", "{D60DE265-391E-4B46-97B4-C02C3833C8E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuySell.GenericRepository", "src\BuySell.GenericRepository\BuySell.GenericRepository.csproj", "{C97D5DF0-9A9E-4A19-8268-287ECFD4B528}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuySell.ViewModels", "src\BuySell.ViewModels\BuySell.ViewModels.csproj", "{DDCE6D78-452E-49BE-8B90-2E95DD25B46E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +61,14 @@ Global
 		{D60DE265-391E-4B46-97B4-C02C3833C8E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D60DE265-391E-4B46-97B4-C02C3833C8E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D60DE265-391E-4B46-97B4-C02C3833C8E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C97D5DF0-9A9E-4A19-8268-287ECFD4B528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C97D5DF0-9A9E-4A19-8268-287ECFD4B528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C97D5DF0-9A9E-4A19-8268-287ECFD4B528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C97D5DF0-9A9E-4A19-8268-287ECFD4B528}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDCE6D78-452E-49BE-8B90-2E95DD25B46E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDCE6D78-452E-49BE-8B90-2E95DD25B46E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDCE6D78-452E-49BE-8B90-2E95DD25B46E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDCE6D78-452E-49BE-8B90-2E95DD25B46E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

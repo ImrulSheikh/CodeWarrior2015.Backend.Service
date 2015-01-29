@@ -46,12 +46,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IProductFlatRepository.cs" />
+    <Compile Include="Migrations\201501281425169_ProductFlatAdded.cs" />
+    <Compile Include="Migrations\201501281425169_ProductFlatAdded.Designer.cs">
+      <DependentUpon>201501281425169_ProductFlatAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501281437494_IdentityDisableAndDatetimeFix.cs" />
+    <Compile Include="Migrations\201501281437494_IdentityDisableAndDatetimeFix.Designer.cs">
+      <DependentUpon>201501281437494_IdentityDisableAndDatetimeFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductFlatContext.cs" />
+    <Compile Include="ProductFlatRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BuySell.GenericRepository\BuySell.GenericRepository.csproj">
+      <Project>{C97D5DF0-9A9E-4A19-8268-287ECFD4B528}</Project>
+      <Name>BuySell.GenericRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BuySell.ViewModels\BuySell.ViewModels.csproj">
+      <Project>{ddce6d78-452e-49be-8b90-2e95dd25b46e}</Project>
+      <Name>BuySell.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BuySell.EntityModels\BuySell.EntityModels.csproj">
+      <Project>{8D6B1BAB-A74F-4FEC-8C77-515BAF62AD59}</Project>
+      <Name>BuySell.EntityModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201501281425169_ProductFlatAdded.resx">
+      <DependentUpon>201501281425169_ProductFlatAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501281437494_IdentityDisableAndDatetimeFix.resx">
+      <DependentUpon>201501281437494_IdentityDisableAndDatetimeFix.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
