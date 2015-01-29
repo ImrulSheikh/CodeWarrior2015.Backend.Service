@@ -193,9 +193,9 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\MyStreamProvider.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DataContexts\ProductCRUDContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -294,6 +294,14 @@
     <ProjectReference Include="..\BuySell.EntityModels\BuySell.EntityModels.csproj">
       <Project>{8d6b1bab-a74f-4fec-8c77-515baf62ad59}</Project>
       <Name>BuySell.EntityModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BuySell.GenericRepository\BuySell.GenericRepository.csproj">
+      <Project>{C97D5DF0-9A9E-4A19-8268-287ECFD4B528}</Project>
+      <Name>BuySell.GenericRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeWarrior2015.Backend.Service.ProductCRUD\CodeWarrior2015.Backend.Service.ProductCRUD.csproj">
+      <Project>{151E28AF-D9C8-417E-AAB3-DB07AE3FB07C}</Project>
+      <Name>CodeWarrior2015.Backend.Service.ProductCRUD</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
