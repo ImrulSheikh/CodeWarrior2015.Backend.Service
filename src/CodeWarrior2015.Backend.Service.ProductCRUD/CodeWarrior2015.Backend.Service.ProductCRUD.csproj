@@ -55,7 +55,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\BuySell.EntityModels\BuySell.EntityModels.csproj">
+    <ProjectReference Include="..\BuySell.EntityModels\BuySell.EntityModels.csproj">
       <Project>{8D6B1BAB-A74F-4FEC-8C77-515BAF62AD59}</Project>
       <Name>BuySell.EntityModels</Name>
     </ProjectReference>
