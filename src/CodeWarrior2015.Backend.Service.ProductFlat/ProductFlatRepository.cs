@@ -1,10 +1,13 @@
 ﻿using System.Data.Entity;
-using BuySell.GenericRepository;
+using CW.Backend.DAL.Query.Entities;
+using CW.Backend.DAL.RepositoryBase;
 
-namespace CodeWarrior2015.Backend.Service.ProductFlat
+namespace CW.Backend.DAL.Query
 {
-    public class ProductFlatRepository : RepositoryBase<BuySell.ViewModels.ProductFlat>, IProductFlatRepository
+    public class ProductFlatRepository : RepositoryBase<ProductFlat>, IProductFlatRepository
     {
-        public ProductFlatRepository(DbContext context) : base(context) { }
+        public ProductFlatRepository(DbContext context) : base(context)
+        {
+        }
     }
 }

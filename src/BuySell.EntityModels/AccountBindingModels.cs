@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BuySell.EntityModels
+namespace CW.Backend.DAL.CRUD.Entities
 {
     // Models used as parameters to AccountController actions.
 

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BuySell.GenericRepository
+namespace CW.Backend.DAL.RepositoryBase
 {
     public interface IRepository<T> where T:class
     {

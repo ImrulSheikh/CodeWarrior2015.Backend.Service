@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BuySell.EntityModels
+namespace CW.Backend.DAL.CRUD.Entities
 {
     // Models returned by AccountController actions.
 

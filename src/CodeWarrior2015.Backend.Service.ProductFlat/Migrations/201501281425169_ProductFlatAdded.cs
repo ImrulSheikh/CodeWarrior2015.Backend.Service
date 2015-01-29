@@ -1,8 +1,7 @@
-namespace CodeWarrior2015.Backend.Service.ProductFlat.Migrations
+using System.Data.Entity.Migrations;
+
+namespace CW.Backend.DAL.Query.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
     public partial class ProductFlatAdded : DbMigration
     {
         public override void Up()

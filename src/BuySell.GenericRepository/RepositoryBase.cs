@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 
-namespace BuySell.GenericRepository
+namespace CW.Backend.DAL.RepositoryBase
 {
     public class RepositoryBase<T> : IRepository<T>, IDisposable where T : class
     {

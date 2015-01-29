@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace BuySell.EntityModels
+namespace CW.Backend.DAL.CRUD.Entities
 {
     public class Product: BaseCoreEntity
     {

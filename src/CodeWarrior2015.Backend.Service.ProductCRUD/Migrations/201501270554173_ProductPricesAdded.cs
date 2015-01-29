@@ -1,8 +1,7 @@
-namespace CodeWarrior2015.Backend.Service.ProductCRUD.Migrations
+using System.Data.Entity.Migrations;
+
+namespace CW.Backend.DAL.CRUD.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
     public partial class ProductPricesAdded : DbMigration
     {
         public override void Up()

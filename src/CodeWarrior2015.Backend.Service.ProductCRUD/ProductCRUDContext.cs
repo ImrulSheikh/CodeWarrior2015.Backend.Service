@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BuySell.EntityModels;
+using CW.Backend.DAL.CRUD.Entities;
 
-namespace CodeWarrior2015.Backend.Service.ProductCRUD
+namespace CW.Backend.DAL.CRUD
 {
     public class ProductCRUDContext : DbContext
     {

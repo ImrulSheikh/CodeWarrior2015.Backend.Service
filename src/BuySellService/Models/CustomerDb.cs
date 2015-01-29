@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Linq;
-using BuySell.EntityModels;
+using CW.Backend.DAL.CRUD.Entities;
 
 namespace EShopper.Models
 {

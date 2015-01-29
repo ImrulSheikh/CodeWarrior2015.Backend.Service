@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using System.Web;
-using BuySell.EntityModels;
+using CW.Backend.DAL.CRUD.Entities;
 using EShopper.DataContexts;
 using EShopper.Models;
 using System;

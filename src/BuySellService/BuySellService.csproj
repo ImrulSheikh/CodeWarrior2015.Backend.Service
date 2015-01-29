@@ -291,9 +291,9 @@
       <Project>{52de4317-63d8-4515-be1d-3287a695ecab}</Project>
       <Name>ApplicationLogger</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BuySell.EntityModels\BuySell.EntityModels.csproj">
+    <ProjectReference Include="..\BuySell.EntityModels\CW.Backend.DAL.CRUD.Enitites.csproj">
       <Project>{8d6b1bab-a74f-4fec-8c77-515baf62ad59}</Project>
-      <Name>BuySell.EntityModels</Name>
+      <Name>CW.Backend.DAL.CRUD.Enitites</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

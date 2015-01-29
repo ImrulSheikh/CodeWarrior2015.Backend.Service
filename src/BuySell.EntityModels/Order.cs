@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace BuySell.EntityModels
+namespace CW.Backend.DAL.CRUD.Entities
 {
     public class Order : BaseCoreEntity
     {

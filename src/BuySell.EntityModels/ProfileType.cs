@@ -1,4 +1,4 @@
-﻿namespace BuySell.EntityModels
+﻿namespace CW.Backend.DAL.CRUD.Entities
 {
     public enum ProfileType
     {

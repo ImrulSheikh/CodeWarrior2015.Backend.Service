@@ -1,13 +1,10 @@
+using System;
 using System.Collections.ObjectModel;
-using BuySell.EntityModels;
+using System.Data.Entity.Migrations;
+using CW.Backend.DAL.CRUD.Entities;
 
-namespace CodeWarrior2015.Backend.Service.ProductCRUD.Migrations
+namespace CW.Backend.DAL.CRUD.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
     internal sealed class Configuration : DbMigrationsConfiguration<ProductCRUDContext>
     {
         public Configuration()

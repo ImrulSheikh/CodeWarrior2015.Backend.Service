@@ -7,8 +7,8 @@
     <ProjectGuid>{151E28AF-D9C8-417E-AAB3-DB07AE3FB07C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CodeWarrior2015.Backend.Service.ProductCRUD</RootNamespace>
-    <AssemblyName>CodeWarrior2015.Backend.Service.ProductCRUD</AssemblyName>
+    <RootNamespace>CW.Backend.DAL.CRUD</RootNamespace>
+    <AssemblyName>CW.Backend.DAL.CRUD</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -113,13 +113,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BuySell.GenericRepository\BuySell.GenericRepository.csproj">
+    <ProjectReference Include="..\BuySell.GenericRepository\CW.Backend.DAL.RepositoryBase.csproj">
       <Project>{C97D5DF0-9A9E-4A19-8268-287ECFD4B528}</Project>
-      <Name>BuySell.GenericRepository</Name>
+      <Name>CW.Backend.DAL.RepositoryBase</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BuySell.EntityModels\BuySell.EntityModels.csproj">
+    <ProjectReference Include="..\BuySell.EntityModels\CW.Backend.DAL.CRUD.Enitites.csproj">
       <Project>{8D6B1BAB-A74F-4FEC-8C77-515BAF62AD59}</Project>
-      <Name>BuySell.EntityModels</Name>
+      <Name>CW.Backend.DAL.CRUD.Enitites</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

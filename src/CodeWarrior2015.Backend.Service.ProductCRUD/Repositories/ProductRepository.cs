@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BuySell.EntityModels;
-using BuySell.GenericRepository;
-using CodeWarrior2015.Backend.Service.ProductCRUD.Repositories.Interfaces;
+﻿using System.Data.Entity;
+using CW.Backend.DAL.CRUD.Entities;
+using CW.Backend.DAL.CRUD.Repositories.Interfaces;
+using CW.Backend.DAL.RepositoryBase;
 
-namespace CodeWarrior2015.Backend.Service.ProductCRUD.Repositories
+namespace CW.Backend.DAL.CRUD.Repositories
 {
     public class ProductRepository : RepositoryBase<Product>, IProductRepository
     {

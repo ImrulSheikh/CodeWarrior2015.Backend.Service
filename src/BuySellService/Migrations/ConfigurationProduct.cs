@@ -1,6 +1,6 @@
-using BuySell.EntityModels;
 using System;
 using System.Data.Entity.Migrations;
+using CW.Backend.DAL.CRUD.Entities;
 
 namespace EShopper.Migrations
 {

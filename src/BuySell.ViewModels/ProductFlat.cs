@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BuySell.EntityModels;
+﻿using CW.Backend.DAL.CRUD.Entities;
 
-namespace BuySell.ViewModels
+namespace CW.Backend.DAL.Query.Entities
 {
     public class ProductFlat : BaseCoreEntity
     {
