@@ -287,6 +287,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ApplicationLogger\ApplicationLogger.csproj">
+      <Project>{52de4317-63d8-4515-be1d-3287a695ecab}</Project>
+      <Name>ApplicationLogger</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BuySell.EntityModels\BuySell.EntityModels.csproj">
       <Project>{8d6b1bab-a74f-4fec-8c77-515baf62ad59}</Project>
       <Name>BuySell.EntityModels</Name>
