@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeWarrior2015.Backend.Ser
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeWarrior2015.Backend.Service.UserStats", "CodeWarrior2015.Backend.Service.UserStats\CodeWarrior2015.Backend.Service.UserStats.csproj", "{AAFAEC2D-28C9-4A12-B409-B97D894B242E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationLogger", "src\ApplicationLogger\ApplicationLogger.csproj", "{52DE4317-63D8-4515-BE1D-3287A695ECAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuySellService.Tests", "src\BuySellService.Tests\BuySellService.Tests.csproj", "{B10409A8-E3DC-48C9-AF31-6180AABF31C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,14 @@ Global
 		{AAFAEC2D-28C9-4A12-B409-B97D894B242E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAFAEC2D-28C9-4A12-B409-B97D894B242E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAFAEC2D-28C9-4A12-B409-B97D894B242E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52DE4317-63D8-4515-BE1D-3287A695ECAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52DE4317-63D8-4515-BE1D-3287A695ECAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52DE4317-63D8-4515-BE1D-3287A695ECAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52DE4317-63D8-4515-BE1D-3287A695ECAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B10409A8-E3DC-48C9-AF31-6180AABF31C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B10409A8-E3DC-48C9-AF31-6180AABF31C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B10409A8-E3DC-48C9-AF31-6180AABF31C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B10409A8-E3DC-48C9-AF31-6180AABF31C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
