@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CW.Backend.DAL.Base.Entities;
 
 namespace CW.Backend.DAL.CRUD.Entities
@@ -21,6 +22,10 @@ namespace CW.Backend.DAL.CRUD.Entities
 
         public int PostedUserId { get; set; }
         public virtual ApplicationUser PostedBy { get; set; }
+
+        public float UnitPrice { get; set; }
+        public float Discount { get; set; }
+        public DateTime DiscountValidity { get; set; }
   
 //        public int ProductPriceId { get; set; }
 //        public virtual ProductPrice Price { get; set; }
