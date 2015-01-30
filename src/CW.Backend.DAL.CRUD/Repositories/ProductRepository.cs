@@ -8,5 +8,7 @@ namespace CW.Backend.DAL.CRUD.Repositories
     public class ProductRepository : RepositoryBase<Product>, IProductRepository
     {
         public ProductRepository(DbContext context) : base(context) { }
+
+
     }
 }

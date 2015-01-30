@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Web;
 using CW.Backend.DAL.CRUD.Entities;
+using CW.Backend.DAL.CRUD.Repositories;
 using CW.Backend.DAL.Query.Entities;
 using EShopper.DataContexts;
 using System;
@@ -33,49 +34,25 @@ namespace EShopper.Controllers
             return response;
 
         }
-
         [Route("GetBuyerProfile")]
-        public HttpResponseMessage GetBuyerProfile(string userName = "")
-        {
-            var data = new List<ProductSummary>
-            {
-                new ProductSummary {Name = "Walton fridge", Price = 48000, NumberOfUnits = 1, CategoryName = "Fridge"},
-                new ProductSummary
-                {
-                    Name = "Sympohny Explorer W130",
-                    Price = 10000,
-                    NumberOfUnits = 1,
-                    CategoryName = "Mobile"
-                },
-                new ProductSummary {Name = "Samsung EAH400", Price = 52000, NumberOfUnits = 1, CategoryName = "TV"}
-            };
-            var response = Request.CreateResponse(data);
+        public HttpResponseMessage GetBuyerProfile(string userName = "") {
+            using (var repo = new UserRepository()) {
+                var data = repo.GetByUserName(userName);
+                var response = Request.CreateResponse(data.Orders);
 
-            return response;
-
+                return response;
+            }
         }
 
         [Route("GetSellerProfile")]
-        public HttpResponseMessage GetSellerProfile(string userName = "")
-        {
-            var data = new List<ProductSummary>
-            {
-                new ProductSummary {Name = "Samsung fridge", Price = 200000, NumberOfUnits = 1, CategoryName = "Fridge"},
-                new ProductSummary
-                {
-                    Name = "NVIDIA Gear W130",
-                    Price = 100000,
-                    NumberOfUnits = 2,
-                    CategoryName = "Mobile"
-                },
-                new ProductSummary {Name = "Ultramodern 32inch", Price = 400004, NumberOfUnits = 1, CategoryName = "TV"}
-            };
-            var response = Request.CreateResponse(data);
+        public HttpResponseMessage GetSellerProfile(string userName = "") {
+            using (var repo = new UserRepository()) {
+                var data = repo.GetByUserName(userName);
+                var response = Request.CreateResponse(data.Products);
 
-            return response;
-
+                return response;
+            }
         }
-
 
        [HttpPost]
        [Route("AddData")]

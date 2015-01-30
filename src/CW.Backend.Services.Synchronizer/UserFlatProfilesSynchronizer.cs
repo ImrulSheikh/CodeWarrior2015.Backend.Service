@@ -55,7 +55,7 @@ namespace CW.Backend.Services.Synchronizer
                 Email = user.Email,
                 FullName = user.FullName,
                 Sex = user.Sex,
-                Mobile = user.Mobile,
+                Mobile = user.PhoneNumber,
                 UserName = user.UserName,
                 Password = user.PasswordHash,
                 UpdatedOn = syncingTime
