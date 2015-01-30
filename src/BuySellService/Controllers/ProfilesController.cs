@@ -13,6 +13,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using EShopper.Models;
 
 namespace EShopper.Controllers
 {
@@ -37,8 +38,17 @@ namespace EShopper.Controllers
         [Route("GetBuyerProfile")]
         public HttpResponseMessage GetBuyerProfile(string userName = "") {
             using (var repo = new UserRepository()) {
-                var data = repo.GetByUserName(userName);
-                var response = Request.CreateResponse(data.Orders);
+                var user = repo.GetByUserName(userName);
+                var orderRepo = new OrderRepository();
+                var orders = orderRepo.GetAll().Where(o => o.ApplicationUserId.Equals(user.Id)).Select(o => new OrderViewModel()
+                {
+                    Id = o.Id,
+                    DeliveryDate = o.DeliveryDate,
+                    OrderDate = o.OrderDate,
+                    Quantity = o.Quantity,
+                    TotalPrice = o.TotalPrice
+                });
+                var response = Request.CreateResponse(orders);
 
                 return response;
             }

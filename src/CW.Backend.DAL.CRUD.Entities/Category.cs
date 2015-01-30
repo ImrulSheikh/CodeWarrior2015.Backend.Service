@@ -11,7 +11,7 @@ namespace CW.Backend.DAL.CRUD.Entities
         public ICollection<CategoryProperty> Properties { get; set; }
         public ICollection<Product> Products { get; set; }
 
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
         public ICollection<Category> SubCategories { get; set; }
     }
 }

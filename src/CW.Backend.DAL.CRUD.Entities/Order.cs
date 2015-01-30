@@ -13,8 +13,8 @@ namespace CW.Backend.DAL.CRUD.Entities
         public DateTime OrderDate { get; set; }
         public DateTime DeliveryDate { get; set; }
 
-        public int OrderedBy { get; set; }
-        public virtual ApplicationUser User { get; set; }
+        public string ApplicationUserId { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
