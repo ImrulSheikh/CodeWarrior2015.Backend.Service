@@ -232,29 +232,11 @@
     <Compile Include="Controllers\ProfilesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
-    <Compile Include="DataContexts\ProductCRUDContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201501232001270_InitialCreate.cs" />
-    <Compile Include="Migrations\201501232001270_InitialCreate.Designer.cs">
-      <DependentUpon>201501232001270_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501232007574_DateTimeFixForOrder.cs" />
-    <Compile Include="Migrations\201501232007574_DateTimeFixForOrder.Designer.cs">
-      <DependentUpon>201501232007574_DateTimeFixForOrder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501280633405_InitialProfile.cs" />
-    <Compile Include="Migrations\201501280633405_InitialProfile.Designer.cs">
-      <DependentUpon>201501280633405_InitialProfile.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501280939345_ChangeProfileColumn.cs" />
-    <Compile Include="Migrations\201501280939345_ChangeProfileColumn.Designer.cs">
-      <DependentUpon>201501280939345_ChangeProfileColumn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\ConfigurationProduct.cs" />
-    <Compile Include="Migrations\ConfigurationProfile.cs" />
-    <Compile Include="DataContexts\ProfileDbContext.cs" />
+    <Compile Include="Models\AccountBindingModels.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModels.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\WishlistViewModel.cs" />
@@ -369,20 +351,6 @@
       <Project>{46ffbb65-7f34-4baa-a193-e5b229eeee47}</Project>
       <Name>CW.Backend.DAL.Query</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201501232001270_InitialCreate.resx">
-      <DependentUpon>201501232001270_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501232007574_DateTimeFixForOrder.resx">
-      <DependentUpon>201501232007574_DateTimeFixForOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501280633405_InitialProfile.resx">
-      <DependentUpon>201501280633405_InitialProfile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501280939345_ChangeProfileColumn.resx">
-      <DependentUpon>201501280939345_ChangeProfileColumn.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

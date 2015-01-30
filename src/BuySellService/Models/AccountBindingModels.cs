@@ -1,20 +1,15 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace PatientData.Models
-{
+namespace CW.Backend.DAL.CRUD.Entities {
     // Models used as parameters to AccountController actions.
 
-    public class AddExternalLoginBindingModel
-    {
+    public class AddExternalLoginBindingModel {
         [Required]
         [Display(Name = "External access token")]
         public string ExternalAccessToken { get; set; }
     }
 
-    public class ChangePasswordBindingModel
-    {
+    public class ChangePasswordBindingModel {
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Current password")]
@@ -32,8 +27,7 @@ namespace PatientData.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class RegisterBindingModel
-    {
+    public class RegisterBindingModel {
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }
@@ -49,6 +43,7 @@ namespace PatientData.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
+        [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Full Name")]
         [StringLength(100, ErrorMessage = "The {0} must be at best {2} characters long.", MinimumLength = 6)]
@@ -56,34 +51,33 @@ namespace PatientData.Models
 
         [DataType(DataType.Text)]
         [Display(Name = "Sex")]
-        [StringLength(4)]
         public string Sex { get; set; }
 
         [DataType(DataType.Text)]
         [Display(Name = "Address")]
-        [StringLength(100, ErrorMessage = "The {0} must be at best {2} characters long.", MinimumLength = 6)]
         public string Address { get; set; }
 
+        [Required]
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "PhoneNumber")]
-        [StringLength(30, ErrorMessage = "The {0} must be at best {2} characters long.", MinimumLength = 6)]
+//        [StringLength(30, ErrorMessage = "The {0} must be at best {2} characters long.", MinimumLength = 6)]
         public string PhoneNumber { get; set; }
 
+        [Required]
         [DataType(DataType.EmailAddress)]
-        [Display(Name = "EmailAddress")]
+        [Display(Name = "Email")]
         [StringLength(100, ErrorMessage = "The {0} must be at best {2} characters long.", MinimumLength = 6)]
-        public string EmailAddress { get; set; }
+        public string Email{ get; set; }
     }
 
-    public class RegisterExternalBindingModel
-    {
+
+    public class RegisterExternalBindingModel {
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }
     }
 
-    public class RemoveLoginBindingModel
-    {
+    public class RemoveLoginBindingModel {
         [Required]
         [Display(Name = "Login provider")]
         public string LoginProvider { get; set; }
@@ -93,8 +87,7 @@ namespace PatientData.Models
         public string ProviderKey { get; set; }
     }
 
-    public class SetPasswordBindingModel
-    {
+    public class SetPasswordBindingModel {
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]

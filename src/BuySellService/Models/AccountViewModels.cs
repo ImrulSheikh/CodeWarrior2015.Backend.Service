@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace PatientData.Models
+namespace CW.Backend.DAL.CRUD.Entities
 {
     // Models returned by AccountController actions.
 
@@ -39,5 +38,14 @@ namespace PatientData.Models
         public string LoginProvider { get; set; }
 
         public string ProviderKey { get; set; }
+    }
+
+    public class UserProfileViewModel {
+        public string UserName { get; set; }
+        public string FullName { get; set; }
+        public string Sex { get; set; }
+        public string Address { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
     }
 }
