@@ -8,7 +8,7 @@
     <h2>Auth Request</h2>
 
     <form id="userData">
-        <input type="text" name="userName" value="Imrul" placeholder="Name" />
+        <input type="text" name="userName" value="Ibnoon_2" placeholder="Name" />
         <input type="password" name="password" value="password123" placeholder="Password" />
         <input type="submit" id="login" value="Login" />
 
@@ -45,7 +45,11 @@
         <input type="submit" id="changePassword" value="Change Password" />
         &nbsp;
         <input type="button" id="GetUserProfile" value="Get User Profile" />
-
+        <br/>
+        <br/>
+        <input type="button" id="GetCurrentWishlist" value="Get Current Wishlist" />
+        <br/>
+        <br/>
 
     </form>
 
@@ -293,6 +297,16 @@
 
             $('#uploadImage').click(uploadImage);
             $('#GetUserProfile').click(GetUserProfile);
+
+            $("#GetCurrentWishlist").click(function() {
+                var url = baseUrl + "/api/Wishlist/GetCurrent";
+                console.log(url);
+                $.ajax(url, {
+                    type: "GET",
+                    headers: getHeaders()
+                }).always(showResponse);
+            });
+
         })
     </script>
 </body>

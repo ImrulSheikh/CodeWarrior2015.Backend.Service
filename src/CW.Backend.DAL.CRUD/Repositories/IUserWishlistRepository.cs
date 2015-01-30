@@ -7,7 +7,6 @@ namespace CW.Backend.DAL.CRUD.Repositories
     {
         UserWishlist GetByUserName(string userName);
         UserWishlist GetByUserId(string userId);
-        UserWishlist GetByCurrentUser();
         void AddProduct(string userId, Product product);
     }
 }

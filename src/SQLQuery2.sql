@@ -1,2 +1,2 @@
 select *
-from dbo.[__MigrationHistory]
+from dbo.Categories

@@ -13,18 +13,16 @@ namespace CW.Backend.DAL.CRUD.Repositories {
         }
         public UserWishlistRepository(DbContext context) : base(context) { }
 
-        public UserWishlist GetByUserName(string userName) {
-            return GetAll().First(w => w.ApplicationUser.UserName == userName);
+        public UserWishlist GetByUserName(string userName)
+        {
+            var all = GetAll().ToList();
+            return all.First(w => w.ApplicationUser.UserName == userName);
         }
 
         public UserWishlist GetByUserId(string userId)
         {
-            return GetAll().First(w => w.ApplicationUserId == userId);
-        }
-
-        public UserWishlist GetByCurrentUser()
-        {
-            return GetByUserName(Thread.CurrentPrincipal.Identity.Name);
+            var all = GetAll().ToList();
+            return all.First(w => w.ApplicationUserId == userId);
         }
 
         public void AddProduct(string userId, Product product)
