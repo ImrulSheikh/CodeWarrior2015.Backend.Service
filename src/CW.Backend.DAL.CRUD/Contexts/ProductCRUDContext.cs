@@ -16,6 +16,7 @@ namespace CW.Backend.DAL.CRUD.Contexts
         public DbSet<ProductGroup> ProductGroups { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<CategoryProperty> CategoryProperties { get; set; }
+        public DbSet<CPAvailableValues> CPAvailableValues { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<UserWishlist> UserWishlists { get; set; }
 
