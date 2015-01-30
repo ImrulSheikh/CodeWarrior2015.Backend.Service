@@ -70,6 +70,34 @@ namespace CW.Backend.DAL.CRUD.Entities {
         public string Email{ get; set; }
     }
 
+    public class UpdateUserModel {
+
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Full Name")]
+        [StringLength(100, ErrorMessage = "The {0} must be at best {2} characters long.", MinimumLength = 6)]
+        public string FullName { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Sex")]
+        public string Sex { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "PhoneNumber")]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email")]
+        [StringLength(100, ErrorMessage = "The {0} must be at best {2} characters long.", MinimumLength = 6)]
+        public string Email { get; set; }
+    }
+
 
     public class RegisterExternalBindingModel {
         [Required]
