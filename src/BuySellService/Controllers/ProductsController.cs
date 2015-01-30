@@ -47,7 +47,8 @@ namespace EShopper.Controllers
                 ImagePaths = ImagePathHelpers.GetSeverRelativeImagePaths(p.ImagePaths),
                 PostedById = p.ApplicationUserId,
                 PostedUserName = p.ApplicationUser.UserName,
-                Properties = GetProductProperties(p.Id).ToDictionary(pp=>pp.Name,pp=>pp.Value)
+                Properties = GetProductProperties(p.Id).ToDictionary(pp => pp.Name, pp => pp.Value),
+                Rating = GetRatingFromComments(p.Id)
             });
 
             var response = Request.CreateResponse(productViews);
@@ -144,10 +145,11 @@ namespace EShopper.Controllers
                 Discount = product.Discount,
                 DiscountValidity = product.DiscountValidity,
                 UnitPrice = product.UnitPrice,
+                Rating = GetRatingFromComments(productId),
                 ImagePaths = ImagePathHelpers.GetSeverRelativeImagePaths(product.ImagePaths),
                 PostedById = product.ApplicationUserId,
                 PostedUserName = product.ApplicationUser.UserName,
-                Properties = GetProductProperties(productId).ToDictionary(pp=>pp.Name,pp=>pp.Value)
+                Properties = GetProductProperties(productId).ToDictionary(pp => pp.Name, pp => pp.Value)
             };
 
             var response = Request.CreateResponse(productView);
@@ -156,10 +158,6 @@ namespace EShopper.Controllers
 
         }
 
-        private List<ProductProperty> GetProductProperties(int productId)
-        {
-            return _propertyRepository.GetAll().Where(pp => pp.ProductId == productId).ToList();
-        }
 
         [Route("GetProductWithSeller")]
         public HttpResponseMessage GetWithSeller(int productId)
@@ -178,7 +176,8 @@ namespace EShopper.Controllers
                 PostedById = product.ApplicationUserId,
                 PostedUserName = product.ApplicationUser.UserName,
                 Location = product.ApplicationUser.Address,
-                Properties = GetProductProperties(productId).ToDictionary(pp => pp.Name, pp => pp.Value)
+                Properties = GetProductProperties(productId).ToDictionary(pp => pp.Name, pp => pp.Value),
+                Rating = GetRatingFromComments(productId)
             };
 
             var response = Request.CreateResponse(productSellerView);
@@ -190,8 +189,8 @@ namespace EShopper.Controllers
         [Route("GetProductReviews")]
         public HttpResponseMessage GetProductReviews(int productId)
         {
-            var data = _commentRepository.GetAll().Where(c => c.ProductId == productId).ToList();
-            var viewData = data.Select(d => new ProductCommentViewModel
+            var comments = GetProductComments(productId);
+            var commentViews = comments.Select(d => new ProductCommentViewModel
             {
                 Id = d.Id,
                 Comment = d.Comment,
@@ -199,9 +198,25 @@ namespace EShopper.Controllers
                 StarRating = d.StarRating
             });
 
-            var response = Request.CreateResponse(viewData);
+            var response = Request.CreateResponse(commentViews);
 
             return response;
+        }
+
+        private double GetRatingFromComments(int productId)
+        {
+            var comments = GetProductComments(productId);
+            return comments.Count == 0 ? 0 : comments.Average(c => c.StarRating);
+        }
+
+        private List<ProductProperty> GetProductProperties(int productId)
+        {
+            return _propertyRepository.GetAll().Where(pp => pp.ProductId == productId).ToList();
+        }
+
+        private List<ProductComment> GetProductComments(int productId)
+        {
+            return _commentRepository.GetAll().Where(c => c.ProductId == productId).ToList();
         }
 
 

@@ -13,6 +13,7 @@ namespace EShopper.Models
         public string PostedById { get; set; }
         public string PostedUserName { get; set; }
         public float UnitPrice { get; set; }
+        public double Rating { get; set; }
         public float Discount { get; set; }
         public DateTime DiscountValidity { get; set; }
         public Dictionary<string,string> Properties { get; set; }
