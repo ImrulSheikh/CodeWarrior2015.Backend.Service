@@ -65,10 +65,11 @@ namespace CW.Backend.DAL.CRUD.Entities {
 
         [Required]
         [DataType(DataType.EmailAddress)]
-        [Display(Name = "EmailAddress")]
+        [Display(Name = "Email")]
         [StringLength(100, ErrorMessage = "The {0} must be at best {2} characters long.", MinimumLength = 6)]
         public string Email{ get; set; }
     }
+
 
     public class RegisterExternalBindingModel {
         [Required]

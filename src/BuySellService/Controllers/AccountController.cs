@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
@@ -8,7 +9,9 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
+using CW.Backend.DAL.CRUD.Contexts;
 using CW.Backend.DAL.CRUD.Entities;
+using CW.Backend.DAL.CRUD.Repositories;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
@@ -54,6 +57,61 @@ namespace EShopper.Controllers
                 HasRegistered = externalLogin == null,
                 LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
             };
+        }
+        [HttpGet]
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        [Route("UserProfile")]
+        public async Task<UserProfileViewModel> UserProfile()
+        {
+            var userProfileViewModel = new UserProfileViewModel();
+
+            using (var context = new IdentityContext())
+            {
+                var userId = User.Identity.GetUserId();
+                
+                var appUser = await context.Users.FirstOrDefaultAsync(u => u.Id.Equals(userId));
+
+                if (appUser == null)
+                {
+                    throw new Exception("User is not available");
+                }
+                userProfileViewModel.UserName = appUser.UserName;
+                userProfileViewModel.FullName = appUser.FullName;
+                userProfileViewModel.Email = appUser.Email;
+                userProfileViewModel.PhoneNumber = appUser.PhoneNumber;
+                userProfileViewModel.Sex = appUser.Sex;
+                userProfileViewModel.Address = appUser.Address;
+            }
+
+            return userProfileViewModel;
+        }
+
+        [HttpPost]
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        [Route("UserProfile")]
+        public async Task<IHttpActionResult> UserProfile(RegisterBindingModel model) {
+            if (!ModelState.IsValid) {
+                return BadRequest(ModelState);
+            }
+
+            IdentityUser user = new ApplicationUser() {
+                UserName = model.UserName,
+                Email = model.Email,
+                Address = model.Address,
+                FullName = model.FullName,
+                PasswordHash = model.Password,
+                PhoneNumber = model.PhoneNumber,
+                Sex = model.Sex
+            };
+
+            IdentityResult result = await UserManager.UpdateAsync(user);
+            IHttpActionResult errorResult = GetErrorResult(result);
+
+            if (errorResult != null) {
+                return errorResult;
+            }
+
+            return Ok();
         }
 
         // POST api/Account/Logout

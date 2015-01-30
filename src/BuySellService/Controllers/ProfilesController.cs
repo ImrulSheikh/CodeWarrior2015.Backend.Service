@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Web;
 using CW.Backend.DAL.CRUD.Entities;
+using CW.Backend.DAL.Query.Entities;
 using EShopper.DataContexts;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ using System.Web.Http.Cors;
 
 namespace EShopper.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/Profiles")]
     public class ProfilesController : ApiController
     {
@@ -33,7 +34,50 @@ namespace EShopper.Controllers
 
         }
 
-        [HttpPost]
+        [Route("GetBuyerProfile")]
+        public HttpResponseMessage GetBuyerProfile(string userName = "")
+        {
+            var data = new List<ProductSummary>
+            {
+                new ProductSummary {Name = "Walton fridge", Price = 48000, NumberOfUnits = 1, CategoryName = "Fridge"},
+                new ProductSummary
+                {
+                    Name = "Sympohny Explorer W130",
+                    Price = 10000,
+                    NumberOfUnits = 1,
+                    CategoryName = "Mobile"
+                },
+                new ProductSummary {Name = "Samsung EAH400", Price = 52000, NumberOfUnits = 1, CategoryName = "TV"}
+            };
+            var response = Request.CreateResponse(data);
+
+            return response;
+
+        }
+
+        [Route("GetSellerProfile")]
+        public HttpResponseMessage GetSellerProfile(string userName = "")
+        {
+            var data = new List<ProductSummary>
+            {
+                new ProductSummary {Name = "Samsung fridge", Price = 200000, NumberOfUnits = 1, CategoryName = "Fridge"},
+                new ProductSummary
+                {
+                    Name = "NVIDIA Gear W130",
+                    Price = 100000,
+                    NumberOfUnits = 2,
+                    CategoryName = "Mobile"
+                },
+                new ProductSummary {Name = "Ultramodern 32inch", Price = 400004, NumberOfUnits = 1, CategoryName = "TV"}
+            };
+            var response = Request.CreateResponse(data);
+
+            return response;
+
+        }
+
+
+       [HttpPost]
        [Route("AddData")]
         public HttpResponseMessage Add(Profile profile)
         {

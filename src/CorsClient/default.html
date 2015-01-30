@@ -8,7 +8,7 @@
     <h2>Auth Request</h2>
 
     <form id="userData">
-        <input type="text" name="userName" value="asad" placeholder="Name" />
+        <input type="text" name="userName" value="Imrul" placeholder="Name" />
         <input type="password" name="password" value="password123" placeholder="Password" />
         <input type="submit" id="login" value="Login" />
 
@@ -22,7 +22,7 @@
         <input type="text" name="Sex" value="MALE" placeholder="Sex" />
         <input type="text" name="Address" value="Address 123 456" placeholder="Address" />
         <input type="text" name="PhoneNumber" value="01751254587458" placeholder="Mobile" />
-        <input type="email" name="EmailAddress" value="noreply@bd.imshealth.com" placeholder="Email" />
+        <input type="email" name="Email" value="noreply@bd.imshealth.com" placeholder="Email" />
 
         <input type="submit" id="register" value="Register" />
 
@@ -30,6 +30,7 @@
         <br />
 
         <input type="submit" id="logout" value="Logout" />
+        
 
 
     </form>
@@ -42,19 +43,18 @@
 
 
         <input type="submit" id="changePassword" value="Change Password" />
+        &nbsp;
+        <input type="button" id="GetUserProfile" value="Get User Profile" />
 
 
     </form>
 
-    <form id="updateProfile">
-        
-        
-    </form>
+    <form id="updateProfile"></form>
 
     <form id="imageData">
         <span>Select file(s) to upload :</span>
         <input id="file1" name="file" type="file" multiple="multiple" />
-        
+
     </form>
 
 
@@ -68,7 +68,7 @@
 
     <button id="uploadImage">Update Image</button>
 
-    
+
 
     <pre id="output"></pre>
 
@@ -82,7 +82,7 @@
 
             var getHeaders = function () {
                 if (accessToken) {
-                    
+
                     var hearder = {
                         "Access-Control-Allow-Origin": "*",
                         "Authorization": "Bearer " + accessToken
@@ -194,7 +194,7 @@
 
             }
             var getProfiles = function () {
-                var url = baseUrl + "/api/Profiles/GetData";
+                var url = baseUrl + "/api/Account/GetData";
                 $.ajax(url, {
                     type: "GET",
                     headers: getHeaders()
@@ -204,6 +204,15 @@
                 return false;
             };
 
+
+            var GetUserProfile = function() {
+                var url = baseUrl + "/api/Account/UserProfile";
+                console.log(url);
+                $.ajax(url, {
+                    type: "GET",
+                    headers: getHeaders()
+                }).always(showResponse);
+            };
 
             var uploadImage = function () {
 
@@ -228,7 +237,7 @@
                         contentType: false,
                         processData: false,
                         headers: getHeaders(),
-                        
+
                         data: fileData,
                         success: function (messages) {
                             for (i = 0; i < messages.length; i++) {
@@ -283,6 +292,7 @@
             $('#changePassword').click(changePassword);
 
             $('#uploadImage').click(uploadImage);
+            $('#GetUserProfile').click(GetUserProfile);
         })
     </script>
 </body>
