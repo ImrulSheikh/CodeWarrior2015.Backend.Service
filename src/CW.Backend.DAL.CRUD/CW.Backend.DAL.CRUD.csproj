@@ -80,6 +80,10 @@
     <Compile Include="Migrations\201501301628356_ProductOrderM2M.Designer.cs">
       <DependentUpon>201501301628356_ProductOrderM2M.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501301805344_UserWishListAdded.cs" />
+    <Compile Include="Migrations\201501301805344_UserWishListAdded.Designer.cs">
+      <DependentUpon>201501301805344_UserWishListAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ConfigurationProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoryRepositoy.cs" />
@@ -119,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501301628356_ProductOrderM2M.resx">
       <DependentUpon>201501301628356_ProductOrderM2M.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501301805344_UserWishListAdded.resx">
+      <DependentUpon>201501301805344_UserWishListAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
