@@ -84,8 +84,13 @@
     <Compile Include="Migrations\201501301805344_UserWishListAdded.Designer.cs">
       <DependentUpon>201501301805344_UserWishListAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501302155055_CategoryPropertyAvailableValuesAdded.cs" />
+    <Compile Include="Migrations\201501302155055_CategoryPropertyAvailableValuesAdded.Designer.cs">
+      <DependentUpon>201501302155055_CategoryPropertyAvailableValuesAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ConfigurationProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CategoryPropertyRepository.cs" />
     <Compile Include="Repositories\CategoryRepositoy.cs" />
     <Compile Include="Repositories\Interfaces\IProductPropertyRepository.cs" />
     <Compile Include="Repositories\Interfaces\IProductCommentRepository.cs" />
@@ -130,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501301805344_UserWishListAdded.resx">
       <DependentUpon>201501301805344_UserWishListAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501302155055_CategoryPropertyAvailableValuesAdded.resx">
+      <DependentUpon>201501302155055_CategoryPropertyAvailableValuesAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

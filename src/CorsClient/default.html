@@ -8,7 +8,7 @@
     <h2>Auth Request</h2>
 
     <form id="userData">
-        <input type="text" name="userName" value="Ibnoon_2" placeholder="Name" />
+        <input type="text" name="userName" value="Imrul" placeholder="Name" />
         <input type="password" name="password" value="password123" placeholder="Password" />
         <input type="submit" id="login" value="Login" />
 
@@ -18,13 +18,18 @@
 
 
         <br />
-        <input type="text" name="fullName" value="The FullName" placeholder="Full Name" />
+        <input type="text" name="FullName" value="The FullName" placeholder="Full Name" />
         <input type="text" name="Sex" value="MALE" placeholder="Sex" />
         <input type="text" name="Address" value="Address 123 456" placeholder="Address" />
         <input type="text" name="PhoneNumber" value="01751254587458" placeholder="Mobile" />
         <input type="email" name="Email" value="noreply@bd.imshealth.com" placeholder="Email" />
 
         <input type="submit" id="register" value="Register" />
+        
+        <br />
+        <br />
+
+        <input type="button" id="update" value="Update User" />
 
         <br />
         <br />
@@ -305,6 +310,23 @@
                     type: "GET",
                     headers: getHeaders()
                 }).always(showResponse);
+            });
+
+            $("#update").click(function() {
+
+                var url = baseUrl + "/api/Account/UserProfile";
+                var data = {
+                    type: "POST",
+                    headers: getHeaders(),
+                    contentType: "application/json;charset=utf-8",
+                    data: JSON.stringify($("#userData").serializeObject())
+
+                };
+
+                console.log(data);
+
+                $.ajax(url, data)
+                .always(showResponse);
             });
 
         })
