@@ -87,10 +87,13 @@
     <Compile Include="Migrations\ConfigurationProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoryRepositoy.cs" />
+    <Compile Include="Repositories\Interfaces\IProductPropertyRepository.cs" />
     <Compile Include="Repositories\Interfaces\IProductCommentRepository.cs" />
     <Compile Include="Repositories\Interfaces\IProductRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUserWishlistRepository.cs" />
+    <Compile Include="Repositories\ProductPropertyRepository.cs" />
+    <Compile Include="Repositories\ProductCommentRepository.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\UserWishlistRepository.cs" />

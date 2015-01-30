@@ -15,6 +15,7 @@ namespace EShopper.Models
         public float UnitPrice { get; set; }
         public float Discount { get; set; }
         public DateTime DiscountValidity { get; set; }
+        public Dictionary<string,string> Properties { get; set; }
     }
 
     public class ProductViewSellerModel : ProductViewModel

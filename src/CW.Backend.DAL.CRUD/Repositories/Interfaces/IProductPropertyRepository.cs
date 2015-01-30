@@ -3,7 +3,7 @@ using CW.Backend.DAL.CRUD.Entities;
 
 namespace CW.Backend.DAL.CRUD.Repositories.Interfaces
 {
-    public interface IProductCommentRepository : IRepository<ProductComment>
+    public interface IProductPropertyRepository : IRepository<ProductProperty>
     {
     }
 }
