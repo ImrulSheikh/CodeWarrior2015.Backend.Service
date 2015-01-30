@@ -5,12 +5,20 @@ using System.Web;
 using CW.Backend.DAL.CRUD.Entities;
 
 namespace EShopper.Models {
-    public class CategoryViewModels {
+    public class CategoryViewModel {
+        public CategoryViewModel(Category category)
+        {
+            Id = category.Id;
+            Name = category.Name;
+            Description = category.Description;
+            SubCategories = new List<CategoryViewModel>(); // Todo: ADD CHILDREN
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public List<CategoryViewModels> SubCategories { get; set; }
+        public List<CategoryViewModel> SubCategories { get; set; }
     }
 
     public class ProductViewModel

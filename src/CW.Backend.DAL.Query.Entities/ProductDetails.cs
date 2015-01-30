@@ -19,7 +19,7 @@ namespace CW.Backend.DAL.Query.Entities
         public float Price { get; set; }
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
-        public int PostedUserId { get; set; }
+        public string PostedUserId { get; set; }
         public string PostedUserName { get; set; }
     }
 }

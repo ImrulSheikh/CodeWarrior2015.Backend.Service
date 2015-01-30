@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
+using CW.Backend.DAL.CRUD.Contexts;
 using CW.Backend.DAL.CRUD.Entities;
 using CW.Backend.DAL.CRUD.Repositories;
+using EShopper.Models;
 
 namespace CW.Backend.Services.Controllers
 {
@@ -12,15 +15,17 @@ namespace CW.Backend.Services.Controllers
     public class CategoriesController : ApiController
     {
         private CategoryRepositoy repository;
+        private ProductCRUDContext crudContext;
         public CategoriesController()
         {
+            crudContext = new ProductCRUDContext();
             repository = new CategoryRepositoy();
         }
 
         [Route("GetAllCategory")]
         public HttpResponseMessage GetCategory()
         {
-
+/*
             var categorieList = repository.GetAll();
 
             var categories = new List<Category>();
@@ -47,11 +52,14 @@ namespace CW.Backend.Services.Controllers
 
             categories.Add(category);
             //var data = repository.GetAll();
+*/
+            using (var catRepo = new CategoryRepositoy(crudContext))
+            {
+                var categories = catRepo.GetAll().Select(c=>new CategoryViewModel(c));
+                var response = Request.CreateResponse(categories);
 
-            var response = Request.CreateResponse(categories);
-
-            return response;
-
+                return response;
+            }
         }
 
         
