@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using CW.Backend.DAL.CRUD.Contexts;
 using CW.Backend.DAL.CRUD.Entities;
 using CW.Backend.DAL.CRUD.Repositories;
@@ -7,16 +8,23 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using CW.Backend.DAL.CRUD.Repositories.Interfaces;
 using EShopper.Models;
+using DalBase = CW.Backend.DAL.Base;
 
 namespace EShopper.Controllers {
     [AllowAnonymous]
     [RoutePrefix("api/Products")]
     public class ProductsController : ApiController {
-        private ProductRepository repository;
+        private readonly IProductRepository _repository;
+        private readonly IProductCommentRepository _commentRepository;
+        private ProductCRUDContext _context;
         public ProductsController() {
-            if (repository == null)
-                repository = new ProductRepository(new ProductCRUDContext());
+            _context = new ProductCRUDContext();
+            if (_repository == null)
+                _repository = new ProductRepository(_context);
+            if(_commentRepository==null)
+                _commentRepository = new ProductCommentRepository(_context);
         }
 
         [Route("GetAllProduct")]
@@ -52,37 +60,56 @@ namespace EShopper.Controllers {
         }
 
         [Route("GetAll")]
-        public HttpResponseMessage GetAll() {
-            var data = new List<ProductViewModel>();
-
-            data.Add(new ProductViewModel()
+        public HttpResponseMessage GetAll() 
+        {
+            
+            var data = _repository.GetAll().ToList();
+            var viewData = data.Select(d => new ProductViewModel
             {
-                Name = "LG G3",
-                Description = "It's a smart phone",
-                Discount = 10,
-                DiscountValidity = DateTime.Now.AddDays(30),
-                Id = 1,
-                ImagePaths = new List<string>() { "aa","ab","cc" },
-                NumberOfUnits = 20,
-                UnitPrice = 50
+                Id = d.Id,
+                Name = d.Name,
+                Description = d.Description,
+                NumberOfUnits = d.NumberOfUnits,
+                Discount = d.Discount,
+                DiscountValidity = d.DiscountValidity,
+                UnitPrice = d.UnitPrice,
+                ImagePaths = d.ImagePaths
+                    .Split(new[] {DalBase.Constants.ObjectSeperator}, StringSplitOptions.None)
+                    .ToList(),
+                PostedById = d.ApplicationUserId,
+                PostedUserName = d.ApplicationUser.UserName
             });
 
-            data.Add(new ProductViewModel() {
-                Name = "Samsung S6",
-                Description = "It's a smart phone",
-                Discount = 30,
-                DiscountValidity = DateTime.Now.AddDays(20),
-                Id = 1,
-                ImagePaths = new List<string>() { "aa-s", "ab-e", "cc-e" },
-                NumberOfUnits = 50,
-                UnitPrice = 80
-            });
-
-
-            var response = Request.CreateResponse(data);
+            var response = Request.CreateResponse(viewData);
 
             return response;
+        }
 
+        [Route("GetAllWithSellersLocation")]
+        public HttpResponseMessage GetAllWithSellersLocation()
+        {
+
+            var data = _repository.GetAll().ToList();
+            var viewData = data.Select(d => new ProductViewSellerModel
+            {
+                Id = d.Id,
+                Name = d.Name,
+                Description = d.Description,
+                NumberOfUnits = d.NumberOfUnits,
+                Discount = d.Discount,
+                DiscountValidity = d.DiscountValidity,
+                UnitPrice = d.UnitPrice,
+                ImagePaths = d.ImagePaths
+                    .Split(new[] { DalBase.Constants.ObjectSeperator }, StringSplitOptions.None)
+                    .ToList(),
+                PostedById = d.ApplicationUserId,
+                PostedUserName = d.ApplicationUser.UserName,
+                Location = d.ApplicationUser.Address
+            });
+
+            var response = Request.CreateResponse(viewData);
+
+            return response;
         }
 
         [Route("Get/{product}")]
@@ -105,20 +132,84 @@ namespace EShopper.Controllers {
 
         [Route("GetProductById")]
         public HttpResponseMessage GetById(string id) {
-            var data = repository.GetById(int.Parse(id));
+            
+            var data = _repository.GetById(int.Parse(id));
+            var viewData = new ProductViewModel
+            {
+                Id = data.Id,
+                Name = data.Name,
+                Description = data.Description,
+                NumberOfUnits = data.NumberOfUnits,
+                Discount = data.Discount,
+                DiscountValidity = data.DiscountValidity,
+                UnitPrice = data.UnitPrice,
+                ImagePaths = data.ImagePaths
+                    .Split(new[] {DalBase.Constants.ObjectSeperator}, StringSplitOptions.None)
+                    .ToList(),
+                PostedById = data.ApplicationUserId,
+                PostedUserName = data.ApplicationUser.UserName
+            };
 
-            var response = Request.CreateResponse(data);
+            var response = Request.CreateResponse(viewData);
 
             return response;
 
         }
 
+        [Route("GetProductWithSeller")]
+        public HttpResponseMessage GetWithSeller(string id)
+        {
+
+            var data = _repository.GetById(int.Parse(id));
+            var viewData = new ProductViewSellerModel
+            {
+                Id = data.Id,
+                Name = data.Name,
+                Description = data.Description,
+                NumberOfUnits = data.NumberOfUnits,
+                Discount = data.Discount,
+                DiscountValidity = data.DiscountValidity,
+                UnitPrice = data.UnitPrice,
+                ImagePaths = data.ImagePaths
+                    .Split(new[] {DalBase.Constants.ObjectSeperator}, StringSplitOptions.None)
+                    .ToList(),
+                PostedById = data.ApplicationUserId,
+                PostedUserName = data.ApplicationUser.UserName,
+                Location = data.ApplicationUser.Address
+            };
+
+            var response = Request.CreateResponse(viewData);
+
+            return response;
+
+        }
+        
+        [Route("GetProductReviews")]
+        public HttpResponseMessage GetProductReviews(string id)
+        {
+
+            var productId = int.Parse(id);
+            var data = _commentRepository.GetAll().Where(c => c.ProductId == productId).ToList();
+            var viewData = data.Select(d => new ProductCommentViewModel
+            {
+                Id = d.Id,
+                Comment = d.Comment,
+                HelpfulHits = d.HelpfulHits,
+                StarRating = d.StarRating
+            });
+
+            var response = Request.CreateResponse(viewData);
+
+            return response;
+        }
+
+
         [HttpPost]
         [Route("AddProduct")]
         public HttpResponseMessage Add(Product item) {
 
-            repository.Add(item);
-            repository.Save();
+            _repository.Add(item);
+            _repository.Save();
 
             var messages = new List<string>();
             messages.Add(item.GetType().ToString() + " added");
