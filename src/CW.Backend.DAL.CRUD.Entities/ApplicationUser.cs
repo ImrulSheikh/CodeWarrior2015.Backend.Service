@@ -14,7 +14,7 @@ namespace CW.Backend.DAL.CRUD.Entities
         public string FullName { get; set; }
         public string Sex { get; set; }
         public string Address { get; set; }
-        public string Mobile { get; set; }
+
         public ICollection<Product> Products { get; set; }
         public ICollection<Order> Orders { get; set; }
 

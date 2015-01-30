@@ -3,7 +3,7 @@ namespace CW.Backend.DAL.CRUD.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Init : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
@@ -115,7 +115,6 @@ namespace CW.Backend.DAL.CRUD.Migrations
                         FullName = c.String(maxLength: 50),
                         Sex = c.String(),
                         Address = c.String(),
-                        Mobile = c.String(),
                         CreatedOn = c.DateTime(precision: 7, storeType: "datetime2"),
                         CreatedBy = c.String(),
                         UpdatedOn = c.DateTime(precision: 7, storeType: "datetime2"),

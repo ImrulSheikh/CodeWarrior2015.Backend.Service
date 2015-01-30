@@ -6,7 +6,7 @@ namespace CW.Backend.DAL.CRUD.Contexts
 {
     public class ProductCRUDContext : IdentityContext
     {
-        private const string DefaultConnectionName = "CW_CRUD";
+        private const string DefaultConnectionName = "DefaultConnection";
 
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductProperty> ProductProperties { get; set; }
@@ -22,7 +22,7 @@ namespace CW.Backend.DAL.CRUD.Contexts
         public ProductCRUDContext()
             : this(DefaultConnectionName)
         {
-
+            
         }
 
         public ProductCRUDContext(string connectionName = DefaultConnectionName)

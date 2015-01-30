@@ -325,9 +325,15 @@ namespace EShopper.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityUser user = new IdentityUser
+            IdentityUser user = new ApplicationUser()
             {
-                UserName = model.UserName
+                UserName = model.UserName,
+                Email = model.Email,
+                Address = model.Address,
+                FullName = model.FullName,
+                PasswordHash = model.Password,
+                PhoneNumber = model.PhoneNumber,
+                Sex = model.Sex
             };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);

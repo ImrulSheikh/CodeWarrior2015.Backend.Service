@@ -60,9 +60,9 @@
     <Compile Include="Contexts\IdentityContext.cs" />
     <Compile Include="Contexts\ProductCRUDContext.cs" />
     <Compile Include="MigrationsIdentity\Configuration.cs" />
-    <Compile Include="Migrations\201501300700195_Init.cs" />
-    <Compile Include="Migrations\201501300700195_Init.Designer.cs">
-      <DependentUpon>201501300700195_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201501300910049_init.cs" />
+    <Compile Include="Migrations\201501300910049_init.Designer.cs">
+      <DependentUpon>201501300910049_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ConfigurationProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,12 +82,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201501300700195_Init.resx">
-      <DependentUpon>201501300700195_Init.cs</DependentUpon>
-    </EmbeddedResource>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <EmbeddedResource Include="Migrations\201501300910049_init.resx">
+      <DependentUpon>201501300910049_init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

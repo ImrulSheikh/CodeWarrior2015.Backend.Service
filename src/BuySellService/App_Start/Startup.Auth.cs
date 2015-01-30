@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CW.Backend.DAL.CRUD.Contexts;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
@@ -17,7 +18,7 @@ namespace EShopper
         {
             PublicClientId = "self";
 
-            UserManagerFactory = () => new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+            UserManagerFactory = () => new UserManager<IdentityUser>(new UserStore<IdentityUser>(new IdentityContext()));
 
             OAuthOptions = new OAuthAuthorizationServerOptions
             {

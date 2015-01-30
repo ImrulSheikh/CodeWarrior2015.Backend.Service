@@ -5,7 +5,7 @@ namespace CW.Backend.DAL.CRUD.Contexts
 {
     public class IdentityContext : IdentityDbContext<ApplicationUser>
     {
-        private const string DefaultConnectionName = "CW_CRUD";
+        private const string DefaultConnectionName = "DefaultConnection";
 
         public IdentityContext()
             : this(DefaultConnectionName)

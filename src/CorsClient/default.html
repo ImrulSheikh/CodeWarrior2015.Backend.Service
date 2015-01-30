@@ -19,7 +19,7 @@
 
         <br />
         <input type="text" name="fullName" value="The FullName" placeholder="Full Name" />
-        <input type="text" name="sex" value="asad" placeholder="Sex" />
+        <input type="text" name="Sex" value="MALE" placeholder="Sex" />
         <input type="text" name="Address" value="Address 123 456" placeholder="Address" />
         <input type="text" name="PhoneNumber" value="01751254587458" placeholder="Mobile" />
         <input type="email" name="EmailAddress" value="noreply@bd.imshealth.com" placeholder="Email" />
@@ -77,8 +77,8 @@
     <script>
         $(function () {
 
-            var baseUrl = "http://localhost/backend.service";
-//            var baseUrl = "http://localhost:64237";
+            //var baseUrl = "http://localhost/backend.service";
+            var baseUrl = "http://localhost:64237";
 
             var getHeaders = function () {
                 if (accessToken) {
@@ -118,6 +118,8 @@
             var register = function () {
                 var registerUrl = baseUrl + "/api/account/register";
                 var data = $("#userData").serialize();
+
+                console.log(data);
                 $.post(registerUrl, data).always(showResponse);
 
                 return false;
