@@ -1,30 +1,51 @@
 ﻿using System.Collections.Generic;
-
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Web.Http;
 using CW.Backend.DAL.CRUD.Entities;
+using CW.Backend.DAL.CRUD.Repositories;
 
 namespace CW.Backend.Services.Controllers
 {
+
     [RoutePrefix("api/Categories")]
     public class CategoriesController : ApiController
     {
-        //private ICategoryRepository repository;
+        private CategoryRepositoy repository;
         public CategoriesController()
         {
-            
+            repository = new CategoryRepositoy();
         }
 
         [Route("GetAllCategory")]
         public HttpResponseMessage GetCategory()
         {
+
+            var categorieList = repository.GetAll();
+
             var categories = new List<Category>();
 
-            for (int i = 0; i < 10; i++)
-            {
-                var cat = new Category() {Description = "des_", Name = "Name" + i};
-                categories.Add(cat);
-            }
+            var category = new Category() {Id= 0, Description = "Electronics", Name = "Electronics" };
+            category.SubCategories = new Collection<Category>();
+
+            var subCategory = new Category() { Id = 100, ParentId = 0, Name = "Laptop" };
+            category.SubCategories.Add(subCategory);
+
+            subCategory = new Category() { Id = 101, ParentId = 0, Name = "Mobile" };
+            category.SubCategories.Add(subCategory);
+            
+            subCategory = new Category() { Id = 102, ParentId = 0, Name = "Home Applicance" };
+            category.SubCategories.Add(subCategory);
+
+            categories.Add(category);
+
+            category = new Category() { Id = 1, Description = "Vehicle", Name = "Vehicle" };
+            category.SubCategories = new Collection<Category>();
+
+            subCategory = new Category() { Id = 110, ParentId = 1, Name = "Toyota" };
+            category.SubCategories.Add(subCategory);
+
+            categories.Add(category);
             //var data = repository.GetAll();
 
             var response = Request.CreateResponse(categories);

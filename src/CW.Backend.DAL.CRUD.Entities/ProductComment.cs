@@ -6,8 +6,10 @@
         public string Comment { get; set; }
         public int StarRating { get; set; }
         public int HelpfulHits { get; set; }
-
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
+
+        public string ApplicationUserId { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; } 
     }
 }

@@ -68,10 +68,20 @@
     <Compile Include="Migrations\201501301239294_ProductPrice.Designer.cs">
       <DependentUpon>201501301239294_ProductPrice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501301315511_CategoryChildOptional.cs" />
+    <Compile Include="Migrations\201501301315511_CategoryChildOptional.Designer.cs">
+      <DependentUpon>201501301315511_CategoryChildOptional.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501301449185_UserRelationshipUpdated.cs" />
+    <Compile Include="Migrations\201501301449185_UserRelationshipUpdated.Designer.cs">
+      <DependentUpon>201501301449185_UserRelationshipUpdated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ConfigurationProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\CategoryRepositoy.cs" />
     <Compile Include="Repositories\Interfaces\IProductRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
+    <Compile Include="Repositories\OrderRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
@@ -94,6 +104,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501301239294_ProductPrice.resx">
       <DependentUpon>201501301239294_ProductPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501301315511_CategoryChildOptional.resx">
+      <DependentUpon>201501301315511_CategoryChildOptional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501301449185_UserRelationshipUpdated.resx">
+      <DependentUpon>201501301449185_UserRelationshipUpdated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
