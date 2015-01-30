@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using BuySell.EntityModels;
-using BuySell.GenericRepository;
+
 using System.Net.Http;
 using System.Web.Http;
-using CodeWarrior2015.Backend.Service.ProductCRUD;
+using CW.Backend.DAL.CRUD.Entities;
 
 namespace CW.Backend.Services.Controllers
 {

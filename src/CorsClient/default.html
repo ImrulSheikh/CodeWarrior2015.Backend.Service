@@ -77,11 +77,18 @@
     <script>
         $(function () {
 
-            var baseUrl = "http://localhost:64237";
+            var baseUrl = "http://localhost/backend.service";
+//            var baseUrl = "http://localhost:64237";
 
             var getHeaders = function () {
                 if (accessToken) {
-                    return { "Authorization": "Bearer " + accessToken };
+                    
+                    var hearder = {
+                        "Access-Control-Allow-Origin": "*",
+                        "Authorization": "Bearer " + accessToken
+                    };
+                    console.log(hearder);
+                    return hearder;
                 }
             };
             var getHeaders2 = function () {

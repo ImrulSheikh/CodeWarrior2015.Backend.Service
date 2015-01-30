@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{901CDC83-95C4-4B3D-8231-2D07914329C3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CW.Backend.Services.Synchronizer</RootNamespace>
+    <AssemblyName>CW.Backend.Services.Synchronizer</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AllQueryRecordsSynchronizer.cs" />
+    <Compile Include="ProductDetailsSynchronizer.cs" />
+    <Compile Include="UserFlatProfilesSynchronizer.cs" />
+    <Compile Include="ProductSummarySynchronizer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CW.Backend.DAL.Base\CW.Backend.DAL.Base.csproj">
+      <Project>{C27F82E9-BC2A-4EEF-9190-2ACAF002EC84}</Project>
+      <Name>CW.Backend.DAL.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CW.Backend.DAL.CRUD.Entities\CW.Backend.DAL.CRUD.Entities.csproj">
+      <Project>{708537E4-4311-4BC7-ABCD-BA95D639A18C}</Project>
+      <Name>CW.Backend.DAL.CRUD.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CW.Backend.DAL.CRUD\CW.Backend.DAL.CRUD.csproj">
+      <Project>{7EDE8C64-0A3A-423A-BF32-FA38913C11E7}</Project>
+      <Name>CW.Backend.DAL.CRUD</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CW.Backend.DAL.Query.Entities\CW.Backend.DAL.Query.Entities.csproj">
+      <Project>{64726FB1-ACED-4370-8C5E-F51682C5F560}</Project>
+      <Name>CW.Backend.DAL.Query.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CW.Backend.DAL.Query\CW.Backend.DAL.Query.csproj">
+      <Project>{46FFBB65-7F34-4BAA-A193-E5B229EEEE47}</Project>
+      <Name>CW.Backend.DAL.Query</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

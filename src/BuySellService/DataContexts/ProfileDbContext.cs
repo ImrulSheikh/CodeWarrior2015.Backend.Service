@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using BuySell.EntityModels;
 using System.Data.Entity;
+using CW.Backend.DAL.CRUD.Entities;
 
 namespace EShopper.DataContexts
 {

@@ -1,6 +1,7 @@
-﻿using BuySell.EntityModels;
-using BuySell.GenericRepository;
-using CodeWarrior2015.Backend.Service.ProductCRUD.Repositories;
+﻿
+using CW.Backend.DAL.Base.Repositories;
+using CW.Backend.DAL.CRUD.Entities;
+using CW.Backend.DAL.CRUD.Repositories;
 using EShopper.DataContexts;
 using System.Collections.Generic;
 using System.Net;

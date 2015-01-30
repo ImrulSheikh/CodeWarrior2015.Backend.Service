@@ -57,18 +57,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ProductRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CodeWarrior2015.Backend.Service.ProductCRUD\CodeWarrior2015.Backend.Service.ProductCRUD.csproj">
-      <Project>{151E28AF-D9C8-417E-AAB3-DB07AE3FB07C}</Project>
-      <Name>CodeWarrior2015.Backend.Service.ProductCRUD</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
