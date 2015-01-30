@@ -102,29 +102,29 @@ namespace EShopper.Controllers {
             return response;
 
         }
-//
-//        [Route("GetProductById")]
-//        public HttpResponseMessage GetById(string id) {
-//            var data = repository.GetById(int.Parse(id));
-//
-//            var response = Request.CreateResponse(data);
-//
-//            return response;
-//
-//        }
-//
-//        [HttpPost]
-//        [Route("AddProduct")]
-//        public HttpResponseMessage Add(Product item) {
-//
-//            repository.Add(item);
-//            repository.Save();
-//
-//            var messages = new List<string>();
-//            messages.Add(item.GetType().ToString() + " added");
-//
-//            return Request.CreateResponse(HttpStatusCode.OK, messages);
-//        }
+
+        [Route("GetProductById")]
+        public HttpResponseMessage GetById(string id) {
+            var data = repository.GetById(int.Parse(id));
+
+            var response = Request.CreateResponse(data);
+
+            return response;
+
+        }
+
+        [HttpPost]
+        [Route("AddProduct")]
+        public HttpResponseMessage Add(Product item) {
+
+            repository.Add(item);
+            repository.Save();
+
+            var messages = new List<string>();
+            messages.Add(item.GetType().ToString() + " added");
+
+            return Request.CreateResponse(HttpStatusCode.OK, messages);
+        }
     }
 
 
