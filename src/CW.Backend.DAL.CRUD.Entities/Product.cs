@@ -21,6 +21,9 @@ namespace CW.Backend.DAL.CRUD.Entities {
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
 
+        public int? UserWishlistId { get; set; }
+        public UserWishlist UserWishlist { get; set; }
+
         public float UnitPrice { get; set; }
         public float Discount { get; set; }
         public DateTime DiscountValidity { get; set; }
