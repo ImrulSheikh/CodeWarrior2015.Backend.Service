@@ -6,13 +6,6 @@ using CW.Backend.DAL.CRUD.Entities;
 
 namespace EShopper.Models {
     public class CategoryViewModel {
-        public CategoryViewModel(Category category)
-        {
-            Id = category.Id;
-            Name = category.Name;
-            Description = category.Description;
-            SubCategories = new List<CategoryViewModel>(); // Todo: ADD CHILDREN
-        }
 
         public int Id { get; set; }
         public string Name { get; set; }
