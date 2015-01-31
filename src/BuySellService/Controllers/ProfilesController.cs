@@ -129,45 +129,39 @@ namespace EShopper.Controllers {
         //            return Request.CreateResponse(HttpStatusCode.OK, messages);
         //        }
         //
-        //        [HttpPost]
-        //        [Route("AddImage")]
-        //        public async Task<HttpResponseMessage> UploadImageAsync()
-        //        {
-        //
-        //            var userId = HttpContext.Current.User.Identity.Name;
-        //            var context = new ProfileDbContext();
-        //            var profile = context.Profiles.Where(x => x.UserName == userId && x.ProfileType == "Seller").First();
-        //
-        //            
-        //
-        //
-        //
-        //            var messages = new List<string>();
-        //            if (Request.Content.IsMimeMultipartContent())
-        //            {
-        //                string uploadPath = HttpContext.Current.Server.MapPath("~/Content/uploads");
-        //
-        //                var streamProvider = new MyStreamProvider(uploadPath);
-        //
-        //                await Request.Content.ReadAsMultipartAsync(streamProvider);
-        //
-        //
-        //                foreach (var file in streamProvider.FileData)
-        //                {
-        //                    var fi = new FileInfo(file.LocalFileName);
-        //                    messages.Add("File uploaded as " + fi.FullName + " (" + fi.Length + " bytes)");
-        //                }
-        //
-        //                profile.ImagePath = uploadPath;
-        //                context.SaveChanges();
-        //
-        //
-        //                return Request.CreateResponse(HttpStatusCode.OK, messages);
-        //            }
-        //            messages.Add("file not added");
-        //
-        //            return Request.CreateResponse(HttpStatusCode.OK, messages);
-        //        }
+        [HttpPost]
+        [Route("AddImage")]
+        public async Task<HttpResponseMessage> UploadImageAsync()
+        {
+
+            var userId = HttpContext.Current.User.Identity.Name;
+
+            var messages = new List<string>();
+            if (Request.Content.IsMimeMultipartContent())
+            {
+                string uploadPath = HttpContext.Current.Server.MapPath("~/Content/uploads");
+
+                var streamProvider = new MyStreamProvider(uploadPath);
+
+                await Request.Content.ReadAsMultipartAsync(streamProvider);
+
+
+                foreach (var file in streamProvider.FileData)
+                {
+                    var fi = new FileInfo(file.LocalFileName);
+                    messages.Add("File uploaded as " + fi.FullName + " (" + fi.Length + " bytes)");
+                }
+
+                profile.ImagePath = uploadPath;
+                context.SaveChanges();
+
+
+                return Request.CreateResponse(HttpStatusCode.OK, messages);
+            }
+            messages.Add("file not added");
+
+            return Request.CreateResponse(HttpStatusCode.OK, messages);
+        }
 
     }
 }

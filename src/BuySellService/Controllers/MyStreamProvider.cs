@@ -20,7 +20,7 @@ namespace EShopper.Controllers
             string fileName = headers.ContentDisposition.FileName;
             if (string.IsNullOrWhiteSpace(fileName))
             {
-                fileName = Guid.NewGuid().ToString() + ".data";
+                fileName = Guid.NewGuid().ToString() + ".png";
             }
             return fileName.Replace("\"", string.Empty);
         }
