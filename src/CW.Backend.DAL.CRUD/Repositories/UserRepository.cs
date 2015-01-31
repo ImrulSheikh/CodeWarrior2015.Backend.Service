@@ -16,6 +16,20 @@ namespace CW.Backend.DAL.CRUD.Repositories {
             return GetAll().First(u => u.UserName == userName);
         }
 
+        public ApplicationUser GetByUserNameIncludingProducts(string userName) {
+            return GetAllIncluding(u=>u.Products).First(u => u.UserName == userName);
+        }
+
+        public ApplicationUser GetByUserNameIncludingOrders(string userName) {
+            return GetAllIncluding(u => u.Orders).First(u => u.UserName == userName);
+        }
+
+        public ApplicationUser GetByUserNameIncludingOrdersAndProducts(string userName) {
+            return GetAllIncluding(u => u.Orders.Select(o=>o.Products)).First(u => u.UserName == userName);
+        }
+
+
+
         public float GetUserRating(string userId) {
 
             var totalRating = 0;
