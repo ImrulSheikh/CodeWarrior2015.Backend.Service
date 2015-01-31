@@ -19,6 +19,7 @@ namespace EShopper.Controllers
     [RoutePrefix("api/Products")]
     public class ProductsController : ApiController
     {
+        private readonly IUserRepository _userRepository;
         private readonly IProductRepository _repository;
         private readonly IProductCommentRepository _commentRepository;
         private readonly IProductPropertyRepository _propertyRepository;
@@ -29,13 +30,24 @@ namespace EShopper.Controllers
             if (_repository == null) _repository = new ProductRepository(_context);
             if (_commentRepository == null) _commentRepository = new ProductCommentRepository(_context);
             if (_propertyRepository == null) _propertyRepository = new ProductPropertyRepository(_context);
+            if (_userRepository == null) _userRepository = new UserRepository(_context);
         }
 
         [Route("GetByCategory")]
         public HttpResponseMessage GetByCategory(int categoryId)
         {
             var products = _repository.GetAll().Where(p => p.CategoryId == categoryId).ToList();
-            var productViews = products.Select(p => new ProductViewModel
+            var productViews = products.Select(ConvertToProductSummary);
+
+            var response = Request.CreateResponse(productViews);
+
+            return response;
+
+        }
+
+        private ProductSummaryViewModel ConvertToProductSummary(Product p)
+        {
+            return new ProductSummaryViewModel
             {
                 Id = p.Id,
                 Name = p.Name,
@@ -48,14 +60,10 @@ namespace EShopper.Controllers
                 PostedById = p.ApplicationUserId,
                 PostedUserName = p.ApplicationUser.UserName,
                 Properties = GetProductProperties(p.Id).ToDictionary(pp => pp.Name, pp => pp.Value),
-                Rating = GetRatingFromComments(p.Id)
-            });
-
-            var response = Request.CreateResponse(productViews);
-
-            return response;
-
+                Rating = GetRatingFromComments(p.ApplicationUserId)
+            };
         }
+
         /*
                     //
                     //            var product = new Product() { Description = "Smart Phone Nokia", Name = "Lumia 925", Id = 0, UnitPrice = 11000 };
@@ -84,7 +92,7 @@ namespace EShopper.Controllers
                 {
             
                     var data = _repository.GetAll().ToList();
-                    var viewData = data.Select(d => new ProductViewModel
+                    var viewData = data.Select(d => new ProductSummaryViewModel
                     {
                         Id = d.Id,
                         Name = d.Name,
@@ -136,51 +144,9 @@ namespace EShopper.Controllers
         public HttpResponseMessage GetById(int productId)
         {
             var product = _repository.GetById(productId);
-            var productView = new ProductViewModel
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Description = product.Description,
-                NumberOfUnits = product.NumberOfUnits,
-                Discount = product.Discount,
-                DiscountValidity = product.DiscountValidity,
-                UnitPrice = product.UnitPrice,
-                Rating = GetRatingFromComments(productId),
-                ImagePaths = ImagePathHelpers.GetSeverRelativeImagePaths(product.ImagePaths),
-                PostedById = product.ApplicationUserId,
-                PostedUserName = product.ApplicationUser.UserName,
-                Properties = GetProductProperties(productId).ToDictionary(pp => pp.Name, pp => pp.Value)
-            };
+            var productView = ConvertToProductSummary(product);
 
             var response = Request.CreateResponse(productView);
-
-            return response;
-
-        }
-
-
-        [Route("GetProductWithSeller")]
-        public HttpResponseMessage GetWithSeller(int productId)
-        {
-            var product = _repository.GetById(productId);
-            var productSellerView = new ProductViewSellerModel
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Description = product.Description,
-                NumberOfUnits = product.NumberOfUnits,
-                Discount = product.Discount,
-                DiscountValidity = product.DiscountValidity,
-                UnitPrice = product.UnitPrice,
-                ImagePaths = ImagePathHelpers.GetSeverRelativeImagePaths(product.ImagePaths),
-                PostedById = product.ApplicationUserId,
-                PostedUserName = product.ApplicationUser.UserName,
-                Location = product.ApplicationUser.Address,
-                Properties = GetProductProperties(productId).ToDictionary(pp => pp.Name, pp => pp.Value),
-                Rating = GetRatingFromComments(productId)
-            };
-
-            var response = Request.CreateResponse(productSellerView);
 
             return response;
 
@@ -203,10 +169,9 @@ namespace EShopper.Controllers
             return response;
         }
 
-        private double GetRatingFromComments(int productId)
+        private double GetRatingFromComments(string userId)
         {
-            var comments = GetProductComments(productId);
-            return comments.Count == 0 ? 0 : comments.Average(c => c.StarRating);
+            return _userRepository.GetUserRating(userId);
         }
 
         private List<ProductProperty> GetProductProperties(int productId)
@@ -220,19 +185,19 @@ namespace EShopper.Controllers
         }
 
 
-        [HttpPost]
-        [Route("AddProduct")]
-        public HttpResponseMessage Add(Product item)
-        {
-
-            _repository.Add(item);
-            _repository.Save();
-
-            var messages = new List<string>();
-            messages.Add(item.GetType().ToString() + " added");
-
-            return Request.CreateResponse(HttpStatusCode.OK, messages);
-        }
+//        [HttpPost]
+//        [Route("AddProduct")]
+//        public HttpResponseMessage Add(Product item)
+//        {
+//
+//            _repository.Add(item);
+//            _repository.Save();
+//
+//            var messages = new List<string>();
+//            messages.Add(item.GetType().ToString() + " added");
+//
+//            return Request.CreateResponse(HttpStatusCode.OK, messages);
+//        }
     }
 
 

@@ -16,10 +16,10 @@ namespace EShopper.Models
 
             var prodList = data.Products.ToList();
 
-            Products = new List<ProductViewModel>();
+            Products = new List<ProductSummaryViewModel>();
             foreach (var product in prodList)
             {
-                Products.Add(new ProductViewModel
+                Products.Add(new ProductSummaryViewModel
                 {
                     Id = product.Id,
                     Name = product.Name,
@@ -36,7 +36,7 @@ namespace EShopper.Models
         }
 
         public int Id { get; set; }
-        public List<ProductViewModel> Products { get; set; }
+        public List<ProductSummaryViewModel> Products { get; set; }
         public string UserId { get; set; }
         public string UserName { get; set; }
 

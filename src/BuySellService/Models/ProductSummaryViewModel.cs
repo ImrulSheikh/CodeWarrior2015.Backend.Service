@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EShopper.Models
 {
-    public class ProductViewModel
+    public class ProductSummaryViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -17,12 +17,14 @@ namespace EShopper.Models
         public float Discount { get; set; }
         public DateTime DiscountValidity { get; set; }
         public Dictionary<string,string> Properties { get; set; }
-    }
-
-    public class ProductViewSellerModel : ProductViewModel
-    {
         public string Location { get; set; }
     }
+
+    public class ProductDetailsViewModel : ProductSummaryViewModel
+    {
+        public List<ProductCommentViewModel> ProductComments { get; set; }
+    }
+
 
     public class ProductCommentViewModel
     {
@@ -30,10 +32,6 @@ namespace EShopper.Models
         public string Comment { get; set; }
         public int StarRating { get; set; }
         public int HelpfulHits { get; set; }
-    }
-
-    public class PropertyViewModel
-    {
     }
 
 }

@@ -5,5 +5,6 @@ namespace CW.Backend.DAL.CRUD.Repositories.Interfaces
 {
     public interface IUserRepository : IRepository<ApplicationUser>
     {
+        float GetUserRating(string userId);
     }
 }
