@@ -13,18 +13,5 @@ namespace CW.Backend.DAL.CRUD.Repositories {
         }
         public UserWishlistRepository(DbContext context) : base(context) { }
 
-        public UserWishlist GetByUserName(string userName)
-        {
-            return new UserWishlist();
-        }
-
-        public UserWishlist GetByUserId(string userId)
-        {
-            return new UserWishlist();
-        }
-
-        public void AddProduct(string userId, Product product)
-        {
-        }
     }
 }

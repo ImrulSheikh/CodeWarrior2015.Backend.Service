@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web.Http;
 using CW.Backend.DAL.CRUD.Contexts;
 using CW.Backend.DAL.CRUD.Entities;
@@ -36,9 +38,8 @@ namespace EShopper.Controllers {
 
             if (_repository.GetAll().Any(w => w.WishedProductId == productId && w.WishedUserId == userData.Id))
                 messages = "Already Added";
-            else
-            {
-                _repository.Add(new UserWishlist{WishedProductId = productId,WishedUserId = userData.Id});
+            else {
+                _repository.Add(new UserWishlist { WishedProductId = productId, WishedUserId = userData.Id });
                 //messages = userName + " added product id =" + productId + " to his/her wishlist";
                 messages = "Item added to wishlist";
             }
@@ -70,6 +71,33 @@ namespace EShopper.Controllers {
 
             return response;
         }
+
+        [HttpPost]
+        [Authorize]
+        [Route("Delete/{productId}")]
+        public async Task<HttpResponseMessage> Delete(int productId) {
+            var userName = Thread.CurrentPrincipal.Identity.Name;
+            var usrData = _userRepository.GetByUserName(userName);
+            var message = "Deletion was not successful !!";
+            using (var context = new ProductCRUDContext()) {
+                var wishlist =
+                    await
+                        context.UserWishlists.FirstOrDefaultAsync(
+                            wl => wl.WishedUserId.Equals(usrData.Id) && wl.WishedProductId.Equals(productId));
+                if (wishlist == null || wishlist.Id == 0) {
+                    throw new Exception("This product is not in your wishlist");
+                }
+                context.UserWishlists.Remove(wishlist);
+                await context.SaveChangesAsync();
+                message = "Deletion was successful.";
+            }
+
+            var response = Request.CreateResponse(message);
+            return response;
+        }
+
+
+
 
         private WishlistViewModel ConvertToWishListView(ApplicationUser usrData, IEnumerable<Product> wishedProds) {
             return new WishlistViewModel {

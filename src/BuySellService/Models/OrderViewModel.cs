@@ -12,9 +12,16 @@ namespace EShopper.Models {
         public DateTime DeliveryDate { get; set; }
         public List<ProductSummaryViewModel> Products { get; set; }
 
-        public OrderViewModel()
-        {
+        public OrderViewModel() {
             Products = new List<ProductSummaryViewModel>();
         }
     }
+
+    public class DeliverOrderViewModel {
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public string CategoryDescription { get; set; }
+        public List<ProductSummaryViewModel> Products { get; set; }
+    }
+
 }

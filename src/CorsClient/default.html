@@ -48,6 +48,7 @@
         <input type="text" value="20" name="productId" />
         
         <input type="button" id="AddWishlist" value="Add Wishlist" />
+        <input type="button" id="DelWishlist" value="Delete Wishlist" />
     </form>
     
 
@@ -345,6 +346,19 @@
                     contentType: "application/json;charset=utf-8",
                     data: JSON.stringify($("#wish-form").serializeObject())
 
+                };
+
+                console.log(data);
+
+                $.ajax(url, data)
+                .always(showResponse);
+            });
+            $("#DelWishlist").click(function () {
+                var productId = $("#wish-form").find("input[name=productId]");
+                var url = baseUrl + "/api/Wishlist/delete/"+ productId.val();
+                var data = {
+                    type: "POST",
+                    headers: getHeaders(),
                 };
 
                 console.log(data);
