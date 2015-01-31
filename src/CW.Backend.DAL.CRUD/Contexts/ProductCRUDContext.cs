@@ -48,7 +48,6 @@ namespace CW.Backend.DAL.CRUD.Contexts
             modelBuilder.Entity<CategoryProperty>().Property(cp => cp.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             modelBuilder.Entity<ApplicationUser>().Property(u => u.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             modelBuilder.Entity<Order>().Property(o => o.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            modelBuilder.Entity<UserWishlist>().Property(o => o.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
             modelBuilder.Entity<Product>().Property(p => p.CreatedOn).HasColumnType("datetime2");
             modelBuilder.Entity<Product>().Property(p => p.UpdatedOn).HasColumnType("datetime2");

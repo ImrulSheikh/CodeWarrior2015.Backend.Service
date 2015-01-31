@@ -11,46 +11,79 @@ using CW.Backend.DAL.CRUD.Repositories;
 using CW.Backend.DAL.CRUD.Repositories.Interfaces;
 using EShopper.Models;
 
-namespace EShopper.Controllers
-{
+namespace EShopper.Controllers {
     [RoutePrefix("api/Wishlist")]
-    public class WishlistController : ApiController
-    {
+    public class WishlistController : ApiController {
         private IUserWishlistRepository _repository;
         private IProductRepository _productRepository;
         private ProductCRUDContext _context;
-        public WishlistController()
-        {
+        private IUserRepository _userRepository;
+
+        public WishlistController() {
             var req = Request;
             _context = new ProductCRUDContext();
             _repository = new UserWishlistRepository(_context);
+            _userRepository = new UserRepository(_context);
             _productRepository = new ProductRepository(_context);
         }
 
         [Route("Add")]
         public HttpResponseMessage AddToWishlist(int productId) {
             var userName = Thread.CurrentPrincipal.Identity.Name;
-            //var data = _repository.GetByUserName(userName);
-            //data.Products = _productRepository.GetAll().Where(p => p.UserWishlistId == data.Id).ToList();
-            //var viewData = new WishlistViewModel(data);
+            var userData = _userRepository.GetByUserName(userName);
+            string messages;
 
-            var messages = userName + " added product id =" + productId + " to his/her wishlist";
+            if (_repository.GetAll().Any(w => w.WishedProductId == productId && w.WishedUserId == userData.Id))
+                messages = "Already Added";
+            else
+            {
+                _repository.Add(new UserWishlist{WishedProductId = productId,WishedUserId = userData.Id});
+                messages = userName + " added product id =" + productId + " to his/her wishlist";
+            }
+
             var response = Request.CreateResponse(messages);
 
             return response;
         }
 
         [Route("GetCurrent")]
-        public HttpResponseMessage GetCurrentWishlist()
-        {
+        public HttpResponseMessage GetCurrentWishlist() {
             var userName = Thread.CurrentPrincipal.Identity.Name;
-            var data = _repository.GetByUserName(userName);
-            data.Products = _productRepository.GetAll().Where(p => p.UserWishlistId == data.Id).ToList();
-            var viewData = new WishlistViewModel(data);
+            var usrData = _userRepository.GetByUserName(userName);
+            var wishedProdIds =
+                _repository.GetAll()
+                    .Where(w => w.WishedUserId == usrData.UserName)
+                    .Select(w => w.WishedProductId)
+                    .Distinct()
+                    .ToList();
+
+            var wishedProds = from wishedProdId in wishedProdIds
+                              join product in _productRepository.GetAll()
+                                  on wishedProdId equals product.Id
+                              select product;
+            var viewData = ConvertToWishListView(usrData, wishedProds);
+
             var response = Request.CreateResponse(viewData);
 
             return response;
         }
 
+        private WishlistViewModel ConvertToWishListView(ApplicationUser usrData, IEnumerable<Product> wishedProds) {
+            return new WishlistViewModel {
+                UserId = usrData.Id,
+                UserName = usrData.UserName,
+                Products = wishedProds.Select(product => new ProductSummaryViewModel {
+                    Id = product.Id,
+                    Name = product.Name,
+                    Description = product.Description,
+                    Discount = product.Discount,
+                    NumberOfUnits = product.NumberOfUnits,
+                    DiscountValidity = product.DiscountValidity,
+                    UnitPrice = product.UnitPrice,
+                    ImagePaths = EShopper.Helpers.ImagePathHelpers.GetSeverRelativeImagePaths(product.ImagePaths)
+
+                }).ToList()
+            };
+        }
     }
 }

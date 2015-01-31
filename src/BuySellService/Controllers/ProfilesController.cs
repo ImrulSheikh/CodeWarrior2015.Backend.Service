@@ -38,7 +38,7 @@ namespace EShopper.Controllers {
                     orders.Add(new OrderViewModel() {
                         Id = order.Id,
                         DeliveryDate = order.DeliveryDate,
-                        OrderDate = order.OrderDate,
+                        OrderDate = order.OrderDate.ToString("yyyy MMMM dd"),
                         Quantity = order.Quantity,
                         TotalPrice = order.TotalPrice,
                         Products = order.Products.Select(ConvertToProductSummary).ToList()

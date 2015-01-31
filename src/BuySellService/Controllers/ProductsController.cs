@@ -177,6 +177,15 @@ namespace EShopper.Controllers {
             return response;
         }
 
+        [Route("GetRecommended")]
+        public HttpResponseMessage GetRecommended()
+        {
+            var products = _repository.GetAll().Skip(4).Take(5).ToList();
+            var response = Request.CreateResponse(products);
+
+            return response;
+        }
+
         private double GetRating(string userId) {
             return _userRepository.GetUserRating(userId);
         }

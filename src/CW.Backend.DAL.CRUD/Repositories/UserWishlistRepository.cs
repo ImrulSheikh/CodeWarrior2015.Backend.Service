@@ -15,19 +15,16 @@ namespace CW.Backend.DAL.CRUD.Repositories {
 
         public UserWishlist GetByUserName(string userName)
         {
-            var all = GetAll().ToList();
-            return all.First(w => w.ApplicationUser.UserName == userName);
+            return new UserWishlist();
         }
 
         public UserWishlist GetByUserId(string userId)
         {
-            var all = GetAll().ToList();
-            return all.First(w => w.ApplicationUserId == userId);
+            return new UserWishlist();
         }
 
         public void AddProduct(string userId, Product product)
         {
-            GetByUserId(userId).Products.Add(product);
         }
     }
 }

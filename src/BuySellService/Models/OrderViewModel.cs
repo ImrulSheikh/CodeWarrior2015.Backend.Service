@@ -8,7 +8,7 @@ namespace EShopper.Models {
         public int Id { get; set; }
         public int Quantity { get; set; }
         public float TotalPrice { get; set; }
-        public DateTime OrderDate { get; set; }
+        public string OrderDate { get; set; }
         public DateTime DeliveryDate { get; set; }
         public List<ProductSummaryViewModel> Products { get; set; }
 
