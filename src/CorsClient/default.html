@@ -338,13 +338,12 @@
                 .always(showResponse);
             });
 
-            $("#AddWishlist").click(function() {
-                var url = baseUrl + "/api/Wishlist/add";
+            $("#AddWishlist").click(function () {
+                var productId = $("#wish-form").find("input[name=productId]");
+                var url = baseUrl + "/api/Wishlist/add/"+ productId.val();
                 var data = {
                     type: "POST",
-                    headers: getHeaders(),
-                    contentType: "application/json;charset=utf-8",
-                    data: JSON.stringify($("#wish-form").serializeObject())
+                    headers: getHeaders()
 
                 };
 

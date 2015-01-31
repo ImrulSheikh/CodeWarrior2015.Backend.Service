@@ -30,7 +30,8 @@ namespace EShopper.Controllers {
         }
 
         [Authorize]
-        [Route("Add")]
+        [HttpPost]
+        [Route("Add/{productId}")]
         public HttpResponseMessage AddToWishlist(int productId) {
             var userName = Thread.CurrentPrincipal.Identity.Name;
             var userData = _userRepository.GetByUserName(userName);
@@ -40,7 +41,8 @@ namespace EShopper.Controllers {
                 messages = "Already Added";
             else {
                 _repository.Add(new UserWishlist { WishedProductId = productId, WishedUserId = userData.Id });
-                //messages = userName + " added product id =" + productId + " to his/her wishlist";
+                _repository.Save();
+
                 messages = "Item added to wishlist";
             }
 
