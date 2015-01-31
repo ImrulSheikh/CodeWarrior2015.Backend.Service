@@ -22,10 +22,11 @@ namespace CW.Backend.DAL.CRUD.Repositories {
             var count = 0;
 
             using (var context = new ProductCRUDContext()) {
-                foreach (var products in context.Products.Where(p => p.ApplicationUserId.Equals(userId))) {
-                    if (products.Comments != null && products.Comments.Count > 0)
-                    {
-                        foreach (var comment in products.Comments) {
+                foreach (var product in context.Products.Where(p => p.ApplicationUserId.Equals(userId)).ToList()) {
+                    var comments = context.ProductComments.Where(pc => pc.ProductId.Equals(product.Id)).ToList();
+
+                    if (comments.Count != 0) {
+                        foreach (var comment in comments) {
                             totalRating += comment.HelpfulHits;
                             count += 1;
                         }
