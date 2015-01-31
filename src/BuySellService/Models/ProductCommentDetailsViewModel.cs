@@ -11,7 +11,6 @@ namespace EShopper.Models {
         public int HelpfulHits { get; set; }
 
         public int ProductId { get; set; }
-        public string ApplicationUserId { get; set; }
 
     }
 }
