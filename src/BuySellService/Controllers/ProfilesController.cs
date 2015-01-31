@@ -22,38 +22,43 @@ namespace EShopper.Controllers {
     public class ProfilesController : ApiController {
 
         [Route("GetBuyerProfile/{userName}")]
-        public HttpResponseMessage GetBuyerProfile(string userName) {
-            using (var repo = new UserRepository()) {
-                var user = repo.GetByUserName(userName);
+        public HttpResponseMessage GetBuyerProfile(string userName)
+        {
 
-                using (var context = new ProductCRUDContext()) {
-                    var orders = new List<OrderViewModel>();
+            var context = new ProductCRUDContext();
+            using (var repo = new UserRepository(context)) 
+            {
+                var user = repo.GetByUserNameIncludingOrdersAndProducts(userName);
 
-                    foreach (var order in context.Orders.Include("Products").Where(o => o.ApplicationUserId.Equals(user.Id))) {
-                        orders.Add(new OrderViewModel() {
-                            Id = order.Id,
-                            DeliveryDate = order.DeliveryDate,
-                            OrderDate = order.OrderDate,
-                            Quantity = order.Quantity,
-                            TotalPrice = order.TotalPrice,
-                            //Products = order.Products.Select(ConvertToProductSummary).ToList()
-                        });
-                    }
 
-                    //foreach (var product in context.Products) {
-                    //    foreach (var order in orders)
-                    //    {
-                    //        if (product.Orders.Any(o => o.Id.Equals(order.Id)))
-                    //        {
-                    //            order.Products.Add(ConvertToProductSummary(product));
-                    //        }
+                //using (var context = new ProductCRUDContext()) {
+                var orders = new List<OrderViewModel>();
+
+                foreach (var order in user.Orders) {
+                    orders.Add(new OrderViewModel() {
+                        Id = order.Id,
+                        DeliveryDate = order.DeliveryDate,
+                        OrderDate = order.OrderDate.ToString("yyyy MMMM dd"),
+                        Quantity = order.Quantity,
+                        TotalPrice = order.TotalPrice,
+                        Products = order.Products.Select(ConvertToProductSummary).ToList()
+                    });
+                }
+
+                //    //foreach (var product in context.Products) {
+                //    //    foreach (var order in orders)
+                //    //    {
+                //    //        if (product.Orders.Any(o => o.Id.Equals(order.Id)))
+                //    //        {
+                //    //            order.Products.Add(ConvertToProductSummary(product));
+                //    //        }
                             
-                    //    }
-                    //}
+                //    //    }
+                //    //}
 
                     var response = Request.CreateResponse(orders.ToList());
                     return response;
-                }
+                //}
             }
         }
 

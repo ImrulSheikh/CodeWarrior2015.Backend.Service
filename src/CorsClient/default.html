@@ -39,6 +39,19 @@
 
 
     </form>
+    <form id="wish-form">
+        <br />
+        <br />
+        <input type="button" id="GetCurrentWishlist" value="Get Current Wishlist" />
+        <br />
+        <br />
+        <input type="text" value="20" name="productId" />
+        
+        <input type="button" id="AddWishlist" value="Add Wishlist" />
+        <input type="button" id="DelWishlist" value="Delete Wishlist" />
+    </form>
+    
+
     <br />
     <form id="changePasswordData">
         <input type="text" name="OldPassword" value="Password123" placeholder="Old Password" />
@@ -50,11 +63,7 @@
         <input type="submit" id="changePassword" value="Change Password" />
         &nbsp;
         <input type="button" id="GetUserProfile" value="Get User Profile" />
-        <br/>
-        <br/>
-        <input type="button" id="GetCurrentWishlist" value="Get Current Wishlist" />
-        <br/>
-        <br/>
+        
 
     </form>
 
@@ -329,6 +338,33 @@
                 .always(showResponse);
             });
 
+            $("#AddWishlist").click(function () {
+                var productId = $("#wish-form").find("input[name=productId]");
+                var url = baseUrl + "/api/Wishlist/add/"+ productId.val();
+                var data = {
+                    type: "POST",
+                    headers: getHeaders()
+
+                };
+
+                console.log(data);
+
+                $.ajax(url, data)
+                .always(showResponse);
+            });
+            $("#DelWishlist").click(function () {
+                var productId = $("#wish-form").find("input[name=productId]");
+                var url = baseUrl + "/api/Wishlist/delete/"+ productId.val();
+                var data = {
+                    type: "POST",
+                    headers: getHeaders(),
+                };
+
+                console.log(data);
+
+                $.ajax(url, data)
+                .always(showResponse);
+            });
         })
     </script>
 </body>

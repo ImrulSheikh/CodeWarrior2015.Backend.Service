@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq.Expressions;
 
 namespace CW.Backend.DAL.Base.Repositories
 {
@@ -28,6 +29,11 @@ namespace CW.Backend.DAL.Base.Repositories
         {
             return _ctx.Set<T>();
         }
+
+        public IEnumerable<T> GetAllIncluding<TProperty>(Expression<Func<T, TProperty>> propertyExpression) {
+            return _ctx.Set<T>().Include(propertyExpression);
+        }
+
 
         public T GetById(int id)
         {

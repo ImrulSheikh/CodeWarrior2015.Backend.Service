@@ -8,13 +8,20 @@ namespace EShopper.Models {
         public int Id { get; set; }
         public int Quantity { get; set; }
         public float TotalPrice { get; set; }
-        public DateTime OrderDate { get; set; }
+        public string OrderDate { get; set; }
         public DateTime DeliveryDate { get; set; }
         public List<ProductSummaryViewModel> Products { get; set; }
 
-        public OrderViewModel()
-        {
+        public OrderViewModel() {
             Products = new List<ProductSummaryViewModel>();
         }
     }
+
+    public class DeliverOrderViewModel {
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public string CategoryDescription { get; set; }
+        public List<ProductSummaryViewModel> Products { get; set; }
+    }
+
 }
