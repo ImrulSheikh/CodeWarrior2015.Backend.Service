@@ -13,19 +13,16 @@ using EShopper.Helpers;
 using EShopper.Models;
 using DalBase = CW.Backend.DAL.Base;
 
-namespace EShopper.Controllers
-{
+namespace EShopper.Controllers {
     [AllowAnonymous]
     [RoutePrefix("api/Products")]
-    public class ProductsController : ApiController
-    {
+    public class ProductsController : ApiController {
         private readonly IUserRepository _userRepository;
         private readonly IProductRepository _repository;
         private readonly IProductCommentRepository _commentRepository;
         private readonly IProductPropertyRepository _propertyRepository;
         private ProductCRUDContext _context;
-        public ProductsController()
-        {
+        public ProductsController() {
             _context = new ProductCRUDContext();
             if (_repository == null) _repository = new ProductRepository(_context);
             if (_commentRepository == null) _commentRepository = new ProductCommentRepository(_context);
@@ -34,21 +31,16 @@ namespace EShopper.Controllers
         }
 
         [Route("GetByCategory")]
-        public HttpResponseMessage GetByCategory(int categoryId)
-        {
+        public HttpResponseMessage GetByCategory(int categoryId) {
             var products = _repository.GetAll().Where(p => p.CategoryId == categoryId).ToList();
             var productViews = products.Select(ConvertToProductSummary);
 
             var response = Request.CreateResponse(productViews);
-
             return response;
-
         }
 
-        private ProductSummaryViewModel ConvertToProductSummary(Product p)
-        {
-            return new ProductSummaryViewModel
-            {
+        private ProductSummaryViewModel ConvertToProductSummary(Product p) {
+            return new ProductSummaryViewModel {
                 Id = p.Id,
                 Name = p.Name,
                 Description = p.Description,
@@ -60,7 +52,27 @@ namespace EShopper.Controllers
                 PostedById = p.ApplicationUserId,
                 PostedUserName = p.ApplicationUser.UserName,
                 Properties = GetProductProperties(p.Id).ToDictionary(pp => pp.Name, pp => pp.Value),
-                Rating = GetRatingFromComments(p.ApplicationUserId)
+                Rating = GetRatingFromComments(p.ApplicationUserId),
+                Location = p.ApplicationUser.Address,
+            };
+        }
+
+        private ProductSummaryViewModel ConvertToProductDetails(Product p) {
+            return new ProductDetailsViewModel(){
+                Id = p.Id,
+                Name = p.Name,
+                Description = p.Description,
+                NumberOfUnits = p.NumberOfUnits,
+                Discount = p.Discount,
+                DiscountValidity = p.DiscountValidity,
+                UnitPrice = p.UnitPrice,
+                ImagePaths = ImagePathHelpers.GetSeverRelativeImagePaths(p.ImagePaths),
+                PostedById = p.ApplicationUserId,
+                PostedUserName = p.ApplicationUser.UserName,
+                Properties = GetProductProperties(p.Id).ToDictionary(pp => pp.Name, pp => pp.Value),
+                Rating = GetRatingFromComments(p.ApplicationUserId),
+                Location = p.ApplicationUser.Address,
+                ProductComments = GetProductComments(p.Id)
             };
         }
 
@@ -141,63 +153,63 @@ namespace EShopper.Controllers
                 }
         */
         [Route("Get/{productId}")]
-        public HttpResponseMessage GetById(int productId)
-        {
+        public HttpResponseMessage GetById(int productId) {
             var product = _repository.GetById(productId);
             var productView = ConvertToProductSummary(product);
 
             var response = Request.CreateResponse(productView);
-
             return response;
+        }
 
+        [Route("GetDetails/{productId}")]
+        public HttpResponseMessage GetDetailsById(int productId) {
+            var product = _repository.GetById(productId);
+            var productView = ConvertToProductDetails(product);
+
+            var response = Request.CreateResponse(productView);
+            return response;
         }
 
         [Route("GetProductReviews")]
-        public HttpResponseMessage GetProductReviews(int productId)
-        {
-            var comments = GetProductComments(productId);
-            var commentViews = comments.Select(d => new ProductCommentViewModel
-            {
+        public HttpResponseMessage GetProductReviews(int productId) {
+            var response = Request.CreateResponse(GetProductComments(productId));
+
+            return response;
+        }
+
+        private double GetRatingFromComments(string userId) {
+            return _userRepository.GetUserRating(userId);
+        }
+
+        private List<ProductProperty> GetProductProperties(int productId) {
+            return _propertyRepository.GetAll().Where(pp => pp.ProductId == productId).ToList();
+        }
+
+        private List<ProductCommentViewModel> GetProductComments(int productId) {
+            var comments = _commentRepository.GetAll().Where(c => c.ProductId == productId).ToList();
+            var commentViews = comments.Select(d => new ProductCommentViewModel {
                 Id = d.Id,
                 Comment = d.Comment,
                 HelpfulHits = d.HelpfulHits,
                 StarRating = d.StarRating
-            });
-
-            var response = Request.CreateResponse(commentViews);
-
-            return response;
-        }
-
-        private double GetRatingFromComments(string userId)
-        {
-            return _userRepository.GetUserRating(userId);
-        }
-
-        private List<ProductProperty> GetProductProperties(int productId)
-        {
-            return _propertyRepository.GetAll().Where(pp => pp.ProductId == productId).ToList();
-        }
-
-        private List<ProductComment> GetProductComments(int productId)
-        {
-            return _commentRepository.GetAll().Where(c => c.ProductId == productId).ToList();
+            }).ToList();
+            return commentViews;
         }
 
 
-//        [HttpPost]
-//        [Route("AddProduct")]
-//        public HttpResponseMessage Add(Product item)
-//        {
-//
-//            _repository.Add(item);
-//            _repository.Save();
-//
-//            var messages = new List<string>();
-//            messages.Add(item.GetType().ToString() + " added");
-//
-//            return Request.CreateResponse(HttpStatusCode.OK, messages);
-//        }
+        //        [HttpPost]
+        //        [Route("AddProduct")]
+        //        public HttpResponseMessage Add(Product item)
+        //        {
+        //
+        //            _repository.Add(item);
+        //            _repository.Save();
+        //
+        //            var messages = new List<string>();
+        //            messages.Add(item.GetType().ToString() + " added");
+        //
+        //            return Request.CreateResponse(HttpStatusCode.OK, messages);
+        //        }
     }
 
 
