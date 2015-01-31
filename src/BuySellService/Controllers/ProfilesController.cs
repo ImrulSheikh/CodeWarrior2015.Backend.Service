@@ -16,45 +16,57 @@ using System.Web.Http.Cors;
 using EShopper.Helpers;
 using EShopper.Models;
 
-namespace EShopper.Controllers
-{
+namespace EShopper.Controllers {
     //[Authorize]
     [RoutePrefix("api/Profiles")]
-    public class ProfilesController : ApiController
-    {
-    
-        [Route("GetBuyerProfile")]
-        public HttpResponseMessage GetBuyerProfile(string userName = "") {
+    public class ProfilesController : ApiController {
+
+        [Route("GetBuyerProfile/{userName}")]
+        public HttpResponseMessage GetBuyerProfile(string userName) {
             using (var repo = new UserRepository()) {
                 var user = repo.GetByUserName(userName);
-                var orderRepo = new OrderRepository();
-                var orders = orderRepo.GetAll().Where(o => o.ApplicationUserId.Equals(user.Id)).Select(o => new OrderViewModel()
-                {
-                    Id = o.Id,
-                    DeliveryDate = o.DeliveryDate,
-                    OrderDate = o.OrderDate,
-                    Quantity = o.Quantity,
-                    TotalPrice = o.TotalPrice
-                });
-                var response = Request.CreateResponse(orders);
 
-                return response;
+                using (var context = new ProductCRUDContext()) {
+                    var orders = new List<OrderViewModel>();
+
+                    foreach (var order in context.Orders.Include("Products").Where(o => o.ApplicationUserId.Equals(user.Id))) {
+                        orders.Add(new OrderViewModel() {
+                            Id = order.Id,
+                            DeliveryDate = order.DeliveryDate,
+                            OrderDate = order.OrderDate,
+                            Quantity = order.Quantity,
+                            TotalPrice = order.TotalPrice,
+                            //Products = order.Products.Select(ConvertToProductSummary).ToList()
+                        });
+                    }
+
+                    //foreach (var product in context.Products) {
+                    //    foreach (var order in orders)
+                    //    {
+                    //        if (product.Orders.Any(o => o.Id.Equals(order.Id)))
+                    //        {
+                    //            order.Products.Add(ConvertToProductSummary(product));
+                    //        }
+                            
+                    //    }
+                    //}
+
+                    var response = Request.CreateResponse(orders.ToList());
+                    return response;
+                }
             }
         }
 
         [Route("GetSellerProfile/{userName}")]
-        public HttpResponseMessage GetSellerProfile(string userName)
-        {
-            
+        public HttpResponseMessage GetSellerProfile(string userName) {
 
-            using (var context = new ProductCRUDContext())
-            {
+
+            using (var context = new ProductCRUDContext()) {
                 var profile = new SellerProfileViewModels();
 
                 var user = context.Users.Include("Products").FirstOrDefault(u => u.UserName.Equals(userName));
 
-                if (user == null)
-                {
+                if (user == null) {
                     throw new Exception("UserName is not valid !!");
                 }
                 //var user = new UserRepository().GetByUserName(userName);
@@ -72,7 +84,7 @@ namespace EShopper.Controllers
                 var response = Request.CreateResponse(profile);
                 return response;
             }
-            
+
         }
 
         private ProductSummaryViewModel ConvertToProductSummary(Product p) {
@@ -101,61 +113,61 @@ namespace EShopper.Controllers
             return new ProductPropertyRepository().GetAll().Where(pp => pp.ProductId == productId).ToList();
         }
 
-//       [HttpPost]
-//       [Route("AddData")]
-//        public HttpResponseMessage Add(Profile profile)
-//        {
-//            profile.UserName = HttpContext.Current.User.Identity.Name;
-//            profile.ProfileType = ProfileType.Seller.ToString();
-//
-//            var context = new ProfileDbContext();
-//            context.Add(profile);
-//
-//            var messages = new List<string>();
-//            messages.Add("profile added");
-//           
-//            return Request.CreateResponse(HttpStatusCode.OK, messages);
-//        }
-//
-//        [HttpPost]
-//        [Route("AddImage")]
-//        public async Task<HttpResponseMessage> UploadImageAsync()
-//        {
-//
-//            var userId = HttpContext.Current.User.Identity.Name;
-//            var context = new ProfileDbContext();
-//            var profile = context.Profiles.Where(x => x.UserName == userId && x.ProfileType == "Seller").First();
-//
-//            
-//
-//
-//
-//            var messages = new List<string>();
-//            if (Request.Content.IsMimeMultipartContent())
-//            {
-//                string uploadPath = HttpContext.Current.Server.MapPath("~/Content/uploads");
-//
-//                var streamProvider = new MyStreamProvider(uploadPath);
-//
-//                await Request.Content.ReadAsMultipartAsync(streamProvider);
-//
-//
-//                foreach (var file in streamProvider.FileData)
-//                {
-//                    var fi = new FileInfo(file.LocalFileName);
-//                    messages.Add("File uploaded as " + fi.FullName + " (" + fi.Length + " bytes)");
-//                }
-//
-//                profile.ImagePath = uploadPath;
-//                context.SaveChanges();
-//
-//
-//                return Request.CreateResponse(HttpStatusCode.OK, messages);
-//            }
-//            messages.Add("file not added");
-//
-//            return Request.CreateResponse(HttpStatusCode.OK, messages);
-//        }
-       
+        //       [HttpPost]
+        //       [Route("AddData")]
+        //        public HttpResponseMessage Add(Profile profile)
+        //        {
+        //            profile.UserName = HttpContext.Current.User.Identity.Name;
+        //            profile.ProfileType = ProfileType.Seller.ToString();
+        //
+        //            var context = new ProfileDbContext();
+        //            context.Add(profile);
+        //
+        //            var messages = new List<string>();
+        //            messages.Add("profile added");
+        //           
+        //            return Request.CreateResponse(HttpStatusCode.OK, messages);
+        //        }
+        //
+        //        [HttpPost]
+        //        [Route("AddImage")]
+        //        public async Task<HttpResponseMessage> UploadImageAsync()
+        //        {
+        //
+        //            var userId = HttpContext.Current.User.Identity.Name;
+        //            var context = new ProfileDbContext();
+        //            var profile = context.Profiles.Where(x => x.UserName == userId && x.ProfileType == "Seller").First();
+        //
+        //            
+        //
+        //
+        //
+        //            var messages = new List<string>();
+        //            if (Request.Content.IsMimeMultipartContent())
+        //            {
+        //                string uploadPath = HttpContext.Current.Server.MapPath("~/Content/uploads");
+        //
+        //                var streamProvider = new MyStreamProvider(uploadPath);
+        //
+        //                await Request.Content.ReadAsMultipartAsync(streamProvider);
+        //
+        //
+        //                foreach (var file in streamProvider.FileData)
+        //                {
+        //                    var fi = new FileInfo(file.LocalFileName);
+        //                    messages.Add("File uploaded as " + fi.FullName + " (" + fi.Length + " bytes)");
+        //                }
+        //
+        //                profile.ImagePath = uploadPath;
+        //                context.SaveChanges();
+        //
+        //
+        //                return Request.CreateResponse(HttpStatusCode.OK, messages);
+        //            }
+        //            messages.Add("file not added");
+        //
+        //            return Request.CreateResponse(HttpStatusCode.OK, messages);
+        //        }
+
     }
 }

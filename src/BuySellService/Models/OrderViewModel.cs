@@ -10,5 +10,11 @@ namespace EShopper.Models {
         public float TotalPrice { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime DeliveryDate { get; set; }
+        public List<ProductSummaryViewModel> Products { get; set; }
+
+        public OrderViewModel()
+        {
+            Products = new List<ProductSummaryViewModel>();
+        }
     }
 }
