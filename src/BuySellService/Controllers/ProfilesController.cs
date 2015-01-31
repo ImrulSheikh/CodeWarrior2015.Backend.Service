@@ -157,8 +157,8 @@ namespace EShopper.Controllers {
                     messages.Add("File uploaded as " + fi.FullName + " (" + fi.Length + " bytes)");
                 }
 
-                profile.ImagePath = uploadPath;
-                context.SaveChanges();
+                //profile.ImagePath = uploadPath;
+                //context.SaveChanges();
 
 
                 return Request.CreateResponse(HttpStatusCode.OK, messages);
