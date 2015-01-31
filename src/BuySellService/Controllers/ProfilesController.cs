@@ -135,11 +135,9 @@ namespace EShopper.Controllers {
         //        }
         //
         [HttpPost]
-        [Route("AddImage")]
-        public async Task<HttpResponseMessage> UploadImageAsync()
+        [Route("AddImage/{productId}")]
+        public async Task<HttpResponseMessage> UploadImageAsync(string productId)
         {
-
-            var userId = HttpContext.Current.User.Identity.Name;
 
             var messages = new List<string>();
             if (Request.Content.IsMimeMultipartContent())
@@ -150,20 +148,34 @@ namespace EShopper.Controllers {
 
                 await Request.Content.ReadAsMultipartAsync(streamProvider);
 
+                var filePaths = new List<string>();
 
                 foreach (var file in streamProvider.FileData)
                 {
                     var fi = new FileInfo(file.LocalFileName);
-                    messages.Add("File uploaded as " + fi.FullName + " (" + fi.Length + " bytes)");
+                    messages.Add(fi.Name);
+                    messages.Add(""+fi.Length);
+
+                    filePaths.Add(fi.Name);
+                    
                 }
 
-                //profile.ImagePath = uploadPath;
-                //context.SaveChanges();
+                
+                var repository = new ProductRepository(new ProductCRUDContext());
+                var product = repository.GetById(int.Parse(productId));
+
+                foreach (var path in filePaths)
+                {
+                    product.ImagePaths += "|" + path;
+                }
+
+                repository.Save();
+                
 
 
                 return Request.CreateResponse(HttpStatusCode.OK, messages);
             }
-            messages.Add("file not added");
+            messages.Add("not a Mime Multipart Content file");
 
             return Request.CreateResponse(HttpStatusCode.OK, messages);
         }
