@@ -4,37 +4,43 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using CW.Backend.DAL.CRUD.Contexts;
+using CW.Backend.DAL.CRUD.Entities;
+using CW.Backend.DAL.CRUD.Repositories;
+using CW.Backend.DAL.CRUD.Repositories.Interfaces;
 using EShopper.Models;
 
 namespace EShopper.Controllers
 {
     [AllowAnonymous]
     [RoutePrefix("api/Comments")]
-    public class CommentsController : ApiController
-    {
-        [Route("Get")]
-        public HttpResponseMessage GetAll(string product) {
-            
-            var data = new List<ProductCommentViewModel>();
+    public class CommentsController : ApiController {
+        private ProductCRUDContext _context;
+        private IProductCommentRepository _commentRepository;
+        private IProductRepository _productRepository;
 
-           data.Add(new ProductCommentViewModel()
-           {
-               Id = 3,
-               Comment = "It's simple comment 1",
-               HelpfulHits = 1,
-               StarRating = 2
-           });
-           data.Add(new ProductCommentViewModel() {
-               Id = 3,
-               Comment = "It's simple comment 2",
-               HelpfulHits = 100,
-               StarRating = 3
-           });
+        public CommentsController() {
+            _context = new ProductCRUDContext();
+            _productRepository = new ProductRepository(_context);
+        }
 
-            var response = Request.CreateResponse(data);
+        [Route("Save")]
+        public HttpResponseMessage Save(ProductCommentDetailsViewModel comment) {
+            var product = _productRepository.GetAllIncluding(p => p.Comments).First(p => p.Id == comment.ProductId);
+            product.Comments.Add(new ProductComment {
+                Comment = comment.Comment,
+                StarRating = comment.HelpfulHits,
+                HelpfulHits = comment.HelpfulHits,
+                ProductId = comment.ProductId,
+            });
+
+            _productRepository.Save();
+
+            var msg = "Comment Successfully added";
+            var response = Request.CreateResponse(msg);
 
             return response;
-
         }
+
     }
 }

@@ -241,6 +241,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModels.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
+    <Compile Include="Models\ProductCommentDetailsViewModel.cs" />
     <Compile Include="Models\ProductSummaryViewModel.cs" />
     <Compile Include="Models\ProfileViewModels.cs" />
     <Compile Include="Models\WishlistViewModel.cs" />
