@@ -39,6 +39,7 @@ namespace EShopper.Controllers
                 ApplicationUserId = userId
             });
 
+            _productRepository.Update(product);
             _productRepository.Save();
 
             var msg = "Comment Successfully added";

@@ -187,6 +187,15 @@ namespace EShopper.Controllers {
             return response;
         }
 
+        [Route("BySearchKey/{searchKey}")]
+        public HttpResponseMessage BySearchKey(string searchKey) {
+            var products = _repository.GetMatchingNameAndCategoriesProducts(searchKey).ToList();
+            var viewModels = products.Select(ConvertToProductSummary);
+            var response = Request.CreateResponse(viewModels);
+
+            return response;
+        }
+
         private double GetRating(string userId) {
             return _userRepository.GetUserRating(userId);
         }
@@ -207,19 +216,19 @@ namespace EShopper.Controllers {
         }
 
 
-        //        [HttpPost]
-        //        [Route("AddProduct")]
-        //        public HttpResponseMessage Add(Product item)
-        //        {
-        //
-        //            _repository.Add(item);
-        //            _repository.Save();
-        //
-        //            var messages = new List<string>();
-        //            messages.Add(item.GetType().ToString() + " added");
-        //
-        //            return Request.CreateResponse(HttpStatusCode.OK, messages);
-        //        }
+        [HttpPost]
+        [Route("AddProduct")]
+        public HttpResponseMessage Add(Product item) 
+        {
+
+            _repository.Add(item);
+            _repository.Save();
+
+            var messages = new List<string>();
+            messages.Add(item.GetType().ToString() + " added");
+
+            return Request.CreateResponse(HttpStatusCode.OK, messages);
+        }
     }
 
 

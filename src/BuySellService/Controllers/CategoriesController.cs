@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.UI.WebControls;
 using CW.Backend.DAL.CRUD.Contexts;
 using CW.Backend.DAL.CRUD.Entities;
 using CW.Backend.DAL.CRUD.Repositories;
@@ -59,6 +60,30 @@ namespace EShopper.Controllers {
             var response = Request.CreateResponse(propertiesViewModels);
             return response;
         }
+
+        [Route("GetSubCategories/{categoryId}")]
+        public HttpResponseMessage GetSubCategories(int categoryId)
+        {
+            List<CategoryViewModel> categoriesViewModel;
+
+            using (var context = new ProductCRUDContext())
+            {
+                using (var repo = new CategoryRepositoy(context))
+                {
+                    var ctgr = repo.GetAllIncluding(ct => ct.SubCategories).First(ct => ct.Id == categoryId);
+                    categoriesViewModel = ctgr.SubCategories.Select(ct => new CategoryViewModel
+                    {
+                        Id = ct.Id,
+                        Name = ct.Name,
+                        Description = ct.Description
+                    }).ToList();
+                }
+            }
+
+            var response = Request.CreateResponse(categoriesViewModel);
+            return response;
+        }
+
 
         private static List<string> GetAvailableList(CategoryProperty categoryProperty) {
             var availableList = new List<string>();
