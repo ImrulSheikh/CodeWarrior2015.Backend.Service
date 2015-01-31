@@ -27,6 +27,7 @@ namespace EShopper.Controllers {
             _productRepository = new ProductRepository(_context);
         }
 
+        [Authorize]
         [Route("Add")]
         public HttpResponseMessage AddToWishlist(int productId) {
             var userName = Thread.CurrentPrincipal.Identity.Name;
@@ -38,7 +39,8 @@ namespace EShopper.Controllers {
             else
             {
                 _repository.Add(new UserWishlist{WishedProductId = productId,WishedUserId = userData.Id});
-                messages = userName + " added product id =" + productId + " to his/her wishlist";
+                //messages = userName + " added product id =" + productId + " to his/her wishlist";
+                messages = "Item added to wishlist";
             }
 
             var response = Request.CreateResponse(messages);
@@ -46,13 +48,14 @@ namespace EShopper.Controllers {
             return response;
         }
 
+        [Authorize]
         [Route("GetCurrent")]
         public HttpResponseMessage GetCurrentWishlist() {
             var userName = Thread.CurrentPrincipal.Identity.Name;
             var usrData = _userRepository.GetByUserName(userName);
             var wishedProdIds =
                 _repository.GetAll()
-                    .Where(w => w.WishedUserId == usrData.UserName)
+                    .Where(w => w.WishedUserId == usrData.Id)
                     .Select(w => w.WishedProductId)
                     .Distinct()
                     .ToList();

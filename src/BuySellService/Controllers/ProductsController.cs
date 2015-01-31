@@ -180,8 +180,9 @@ namespace EShopper.Controllers {
         [Route("GetRecommended")]
         public HttpResponseMessage GetRecommended()
         {
-            var products = _repository.GetAll().Skip(4).Take(5).ToList();
-            var response = Request.CreateResponse(products);
+            var products = _repository.GetAll().Skip(4).Take(3).ToList();
+            var viewModels = products.Select(ConvertToProductSummary);
+            var response = Request.CreateResponse(viewModels);
 
             return response;
         }
