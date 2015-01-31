@@ -52,7 +52,7 @@ namespace EShopper.Controllers {
                 PostedById = p.ApplicationUserId,
                 PostedUserName = p.ApplicationUser.UserName,
                 Properties = GetProductProperties(p.Id).ToDictionary(pp => pp.Name, pp => pp.Value),
-                Rating = GetRatingFromComments(p.ApplicationUserId),
+                Rating = GetRating(p.ApplicationUserId),
                 Location = p.ApplicationUser.Address,
             };
         }
@@ -70,7 +70,7 @@ namespace EShopper.Controllers {
                 PostedById = p.ApplicationUserId,
                 PostedUserName = p.ApplicationUser.UserName,
                 Properties = GetProductProperties(p.Id).ToDictionary(pp => pp.Name, pp => pp.Value),
-                Rating = GetRatingFromComments(p.ApplicationUserId),
+                Rating = GetRating(p.ApplicationUserId),
                 Location = p.ApplicationUser.Address,
                 ProductComments = GetProductComments(p.Id)
             };
@@ -177,7 +177,7 @@ namespace EShopper.Controllers {
             return response;
         }
 
-        private double GetRatingFromComments(string userId) {
+        private double GetRating(string userId) {
             return _userRepository.GetUserRating(userId);
         }
 

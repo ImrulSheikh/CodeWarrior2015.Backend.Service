@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using System.Web;
+using CW.Backend.DAL.CRUD.Contexts;
 using CW.Backend.DAL.CRUD.Entities;
 using CW.Backend.DAL.CRUD.Repositories;
 using CW.Backend.DAL.Query.Entities;
@@ -12,6 +13,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using EShopper.Helpers;
 using EShopper.Models;
 
 namespace EShopper.Controllers
@@ -40,14 +42,63 @@ namespace EShopper.Controllers
             }
         }
 
-        [Route("GetSellerProfile")]
-        public HttpResponseMessage GetSellerProfile(string userName = "") {
-            using (var repo = new UserRepository()) {
-                var data = repo.GetByUserName(userName);
-                var response = Request.CreateResponse(data.Products);
+        [Route("GetSellerProfile/{userName}")]
+        public HttpResponseMessage GetSellerProfile(string userName)
+        {
+            
 
+            using (var context = new ProductCRUDContext())
+            {
+                var profile = new SellerProfileViewModels();
+
+                var user = context.Users.Include("Products").FirstOrDefault(u => u.UserName.Equals(userName));
+
+                if (user == null)
+                {
+                    throw new Exception("UserName is not valid !!");
+                }
+                //var user = new UserRepository().GetByUserName(userName);
+                profile.User = new UserProfileViewModel() {
+                    UserName = user.UserName,
+                    FullName = user.FullName,
+                    Address = user.Address,
+                    Email = user.Email,
+                    Sex = user.Sex,
+                    PhoneNumber = user.PhoneNumber
+                };
+                profile.Rating = new UserRepository().GetUserRating(user.Id);
+                profile.Products = user.Products.Select(ConvertToProductSummary).ToList();
+
+                var response = Request.CreateResponse(profile);
                 return response;
             }
+            
+        }
+
+        private ProductSummaryViewModel ConvertToProductSummary(Product p) {
+            return new ProductSummaryViewModel {
+                Id = p.Id,
+                Name = p.Name,
+                Description = p.Description,
+                NumberOfUnits = p.NumberOfUnits,
+                Discount = p.Discount,
+                DiscountValidity = p.DiscountValidity,
+                UnitPrice = p.UnitPrice,
+                ImagePaths = ImagePathHelpers.GetSeverRelativeImagePaths(p.ImagePaths),
+                PostedById = p.ApplicationUserId,
+                PostedUserName = p.ApplicationUser.UserName,
+                Properties = GetProductProperties(p.Id).ToDictionary(pp => pp.Name, pp => pp.Value),
+                Rating = GetRating(p.ApplicationUserId),
+                Location = p.ApplicationUser.Address,
+            };
+        }
+
+        private double GetRating(string userId) {
+            return new UserRepository().GetUserRating(userId);
+        }
+
+        private List<ProductProperty> GetProductProperties(int productId) {
+            return new ProductPropertyRepository().GetAll().Where(pp => pp.ProductId == productId).ToList();
         }
 
 //       [HttpPost]
