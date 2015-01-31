@@ -27,6 +27,19 @@ namespace EShopper.Controllers
             _productRepository = new ProductRepository(_context);
         }
 
+        [Route("Add")]
+        public HttpResponseMessage AddToWishlist(int productId) {
+            var userName = Thread.CurrentPrincipal.Identity.Name;
+            //var data = _repository.GetByUserName(userName);
+            //data.Products = _productRepository.GetAll().Where(p => p.UserWishlistId == data.Id).ToList();
+            //var viewData = new WishlistViewModel(data);
+
+            var messages = userName + " added product id =" + productId + " to his/her wishlist";
+            var response = Request.CreateResponse(messages);
+
+            return response;
+        }
+
         [Route("GetCurrent")]
         public HttpResponseMessage GetCurrentWishlist()
         {
