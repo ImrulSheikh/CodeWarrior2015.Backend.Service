@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
+using CW.Backend.DAL.Base.Entities;
 using CW.Backend.DAL.CRUD.Contexts;
 using CW.Backend.DAL.CRUD.Entities;
 using CW.Backend.DAL.CRUD.Repositories;
@@ -9,8 +11,10 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using CW.Backend.DAL.CRUD.Repositories.Interfaces;
+using EShopper.BackgroundJob;
 using EShopper.Helpers;
 using EShopper.Models;
+using Microsoft.AspNet.Identity;
 using DalBase = CW.Backend.DAL.Base;
 
 namespace EShopper.Controllers {
@@ -188,12 +192,24 @@ namespace EShopper.Controllers {
         }
 
         [Route("BySearchKey/{searchKey}")]
-        public HttpResponseMessage BySearchKey(string searchKey) {
+        public HttpResponseMessage BySearchKey(string searchKey)
+        {
+            SaveSearchKey(searchKey);
             var products = _repository.GetMatchingNameAndCategoriesProducts(searchKey).ToList();
             var viewModels = products.Select(ConvertToProductSummary);
             var response = Request.CreateResponse(viewModels);
 
             return response;
+        }
+
+        private void SaveSearchKey(string searchKey)
+        {
+            var userName = Thread.CurrentPrincipal.Identity.Name;
+            var send = new SaveBrowsingHistory(userName, searchKey);
+
+            var t = new Thread(send.Save);
+
+            t.Start();
         }
 
         private double GetRating(string userId) {
@@ -218,10 +234,25 @@ namespace EShopper.Controllers {
 
         [HttpPost]
         [Route("AddProduct")]
-        public HttpResponseMessage Add(Product item) 
+        public HttpResponseMessage Add(ProductUploadModel item)
         {
+            var uId = Thread.CurrentPrincipal.Identity.GetUserId();
+            var uName = Thread.CurrentPrincipal.Identity.Name;
+            _repository.Add(new Product
+            {
+                Name = item.Name,
+                Description = item.Description,
+                NumberOfUnits = item.NumberOfUnits,
+                ImagePaths = item.ImagePaths,
+                UnitPrice = item.UnitPrice,
+                Discount = item.Discount,
+                ApplicationUserId = uId,
+                CreatedOn = DateTime.Now,
+                CreatedBy = uName,
+                Status = EntityStatus.Active,
+                CategoryId = item.SubCategoryId,
 
-            _repository.Add(item);
+            });
             _repository.Save();
 
             var messages = new List<string>();

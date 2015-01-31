@@ -17,6 +17,11 @@ namespace EShopper.BackgroundJob
             Product = product;
         }
 
+        public SaveBrowsingHistory(string userName, string searchKey)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Save()
         {
             // do save;   

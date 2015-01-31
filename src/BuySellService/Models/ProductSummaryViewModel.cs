@@ -20,6 +20,18 @@ namespace EShopper.Models
         public string Location { get; set; }
     }
 
+    public class ProductUploadModel
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public int NumberOfUnits { get; set; }
+        public string ImagePaths { get; set; }
+        public float UnitPrice { get; set; }
+        public int CategoryId { get; set; }
+        public int SubCategoryId { get; set; }
+        public float Discount { get; set; }
+    }
+
     public class ProductDetailsViewModel : ProductSummaryViewModel
     {
         public List<ProductCommentViewModel> ProductComments { get; set; }
