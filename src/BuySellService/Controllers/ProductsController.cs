@@ -194,8 +194,11 @@ namespace EShopper.Controllers {
         [Route("BySearchKey/{searchKey}")]
         public HttpResponseMessage BySearchKey(string searchKey)
         {
-            SaveSearchKey(searchKey);
+            //SaveSearchKey(searchKey);
             var products = _repository.GetMatchingNameAndCategoriesProducts(searchKey).ToList();
+            if (products.Count == 0)
+                return Request.CreateResponse(new List<ProductSummaryViewModel>());
+
             var viewModels = products.Select(ConvertToProductSummary);
             var response = Request.CreateResponse(viewModels);
 
@@ -231,7 +234,7 @@ namespace EShopper.Controllers {
             return commentViews;
         }
 
-
+        [Authorize]
         [HttpPost]
         [Route("AddProduct")]
         public HttpResponseMessage Add(ProductUploadModel item)
